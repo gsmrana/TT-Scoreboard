@@ -45,7 +45,7 @@ static byte bPixelLookupTable[8] =
  Note this currently uses the SPI port for the fastest performance to the DMD, be
  careful of possible conflicts with other SPI port devices
 --------------------------------------------------------------------------------------*/
-DMD::DMD(byte panelsWide, byte panelsHigh, byte *screenbuffer)
+DMD::DMD(byte panelsWide, byte panelsHigh)
 {
     DisplaysWide=panelsWide;
     DisplaysHigh=panelsHigh;
@@ -54,8 +54,9 @@ DMD::DMD(byte panelsWide, byte panelsHigh, byte *screenbuffer)
     row2 = DisplaysTotal<<5;
     row3 = ((DisplaysTotal<<2)*3)<<2;
 	
+	// dont't need this, we are using static allocation
     //bDMDScreenRAM = (byte*)malloc(DisplaysTotal*DMD_RAM_SIZE_BYTES);
-	bDMDScreenRAM = (byte*)screenbuffer;
+	
 	bDMDByte = 0; // init the scan line/ram pointer to the required start point
 	
     // initialize the SPI port

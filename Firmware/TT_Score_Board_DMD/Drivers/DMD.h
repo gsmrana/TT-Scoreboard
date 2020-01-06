@@ -126,7 +126,7 @@ class DMD
 {
   public:
     //Instantiate the DMD
-    DMD(byte panelsWide, byte panelsHigh, byte *screenbuffer);
+    DMD(byte panelsWide, byte panelsHigh);
 	//virtual ~DMD();
 
   //Set or clear a pixel at the x and y location (0,0 is the top left corner)
@@ -178,7 +178,10 @@ class DMD
     void drawCircleSub( int cx, int cy, int x, int y, byte bGraphicsMode );
 
     //Mirror of DMD pixels in RAM, ready to be clocked out by the main loop or high speed timer calls
-    byte *bDMDScreenRAM;
+    //byte *bDMDScreenRAM;
+	
+	// using static allocation
+	byte bDMDScreenRAM[DMD_RAM_SIZE_BYTES];
 
     //Marquee values
     char marqueeText[256];
