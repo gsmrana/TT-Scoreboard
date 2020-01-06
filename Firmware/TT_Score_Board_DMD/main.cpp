@@ -1,6 +1,14 @@
 /*
  * TT_Score_Board_DMD_Native.cpp
  *
+  * Controller: ATmega328P
+  *
+  * low_fuses:		0xFF
+  * high_fuses:		0xDF
+  * extended_fuses:	0xFF
+  *
+  * MCU Clock: 16MHz crystal
+  *
  * Created: 16/12/2019 8:00:15 PM
  * Author : GSM Rana
  */ 

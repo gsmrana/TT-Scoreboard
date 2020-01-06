@@ -357,7 +357,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x3000
+.text           0x00000000     0x2fc0
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -451,135 +451,135 @@ END GROUP
                 0x00000dc4                . = ALIGN (0x2)
  *(.text.*)
  .text._ZN3DMD10writePixelEjjhh
-                0x00000dc4      0x186 Drivers/DMD.o
+                0x00000dc4      0x16c Drivers/DMD.o
                 0x00000dc4                _ZN3DMD10writePixelEjjhh
  .text._ZN3DMD11clearScreenEh
-                0x00000f4a       0x44 Drivers/DMD.o
-                0x00000f4a                _ZN3DMD11clearScreenEh
- .text._ZN3DMDC2EhhPh
-                0x00000f8e       0xb6 Drivers/DMD.o
-                0x00000f8e                _ZN3DMDC1EhhPh
-                0x00000f8e                _ZN3DMDC2EhhPh
+                0x00000f30       0x38 Drivers/DMD.o
+                0x00000f30                _ZN3DMD11clearScreenEh
+ .text._ZN3DMDC2Ehh
+                0x00000f68       0xb2 Drivers/DMD.o
+                0x00000f68                _ZN3DMDC2Ehh
+                0x00000f68                _ZN3DMDC1Ehh
  .text._ZN3DMD8drawLineEiiiih
-                0x00001044      0x16c Drivers/DMD.o
-                0x00001044                _ZN3DMD8drawLineEiiiih
+                0x0000101a      0x16c Drivers/DMD.o
+                0x0000101a                _ZN3DMD8drawLineEiiiih
  .text._ZN3DMD13drawFilledBoxEiiiih
-                0x000011b0       0x64 Drivers/DMD.o
-                0x000011b0                _ZN3DMD13drawFilledBoxEiiiih
+                0x00001186       0x64 Drivers/DMD.o
+                0x00001186                _ZN3DMD13drawFilledBoxEiiiih
  .text._ZN3DMD15drawTestPatternEh
-                0x00001214      0x1c4 Drivers/DMD.o
-                0x00001214                _ZN3DMD15drawTestPatternEh
+                0x000011ea      0x1c4 Drivers/DMD.o
+                0x000011ea                _ZN3DMD15drawTestPatternEh
  .text._ZN3DMD16scanDisplayBySPIEv
-                0x000013d8      0x152 Drivers/DMD.o
-                0x000013d8                _ZN3DMD16scanDisplayBySPIEv
+                0x000013ae      0x148 Drivers/DMD.o
+                0x000013ae                _ZN3DMD16scanDisplayBySPIEv
  .text._ZN3DMD10selectFontEPKh
-                0x0000152a        0xc Drivers/DMD.o
-                0x0000152a                _ZN3DMD10selectFontEPKh
+                0x000014f6        0xc Drivers/DMD.o
+                0x000014f6                _ZN3DMD10selectFontEPKh
  .text._ZN3DMD9charWidthEh
-                0x00001536       0x6a Drivers/DMD.o
-                0x00001536                _ZN3DMD9charWidthEh
+                0x00001502       0x6a Drivers/DMD.o
+                0x00001502                _ZN3DMD9charWidthEh
  .text._ZN3DMD8drawCharEiihh
-                0x000015a0      0x33c Drivers/DMD.o
-                0x000015a0                _ZN3DMD8drawCharEiihh
+                0x0000156c      0x33c Drivers/DMD.o
+                0x0000156c                _ZN3DMD8drawCharEiihh
  .text._ZN3DMD10drawStringEiiPKchh
-                0x000018dc      0x17c Drivers/DMD.o
-                0x000018dc                _ZN3DMD10drawStringEiiPKchh
+                0x000018a8      0x17c Drivers/DMD.o
+                0x000018a8                _ZN3DMD10drawStringEiiPKchh
  .text._ZN3DMD11drawMarqueeEPKchii
-                0x00001a58       0xee Drivers/DMD.o
-                0x00001a58                _ZN3DMD11drawMarqueeEPKchii
+                0x00001a24       0xf2 Drivers/DMD.o
+                0x00001a24                _ZN3DMD11drawMarqueeEPKchii
  .text._ZN3DMD11stepMarqueeEii
-                0x00001b46      0x334 Drivers/DMD.o
-                0x00001b46                _ZN3DMD11stepMarqueeEii
+                0x00001b16      0x328 Drivers/DMD.o
+                0x00001b16                _ZN3DMD11stepMarqueeEii
  .text._Z13DriverIO_Initv
-                0x00001e7a       0x10 Drivers/DriverIO.o
-                0x00001e7a                _Z13DriverIO_Initv
+                0x00001e3e       0x10 Drivers/DriverIO.o
+                0x00001e3e                _Z13DriverIO_Initv
  .text._Z6millisv
-                0x00001e8a       0x18 Drivers/DriverIO.o
-                0x00001e8a                _Z6millisv
+                0x00001e4e       0x18 Drivers/DriverIO.o
+                0x00001e4e                _Z6millisv
  .text.__vector_16
-                0x00001ea2       0x94 Drivers/DriverIO.o
-                0x00001ea2                __vector_16
+                0x00001e66       0x94 Drivers/DriverIO.o
+                0x00001e66                __vector_16
  .text._ZN8SPIClass5beginEv
-                0x00001f36        0xe Drivers/SPI.o
-                0x00001f36                _ZN8SPIClass5beginEv
+                0x00001efa        0xe Drivers/SPI.o
+                0x00001efa                _ZN8SPIClass5beginEv
  .text._ZN8SPIClass11setBitOrderEh
-                0x00001f44       0x14 Drivers/SPI.o
-                0x00001f44                _ZN8SPIClass11setBitOrderEh
+                0x00001f08       0x14 Drivers/SPI.o
+                0x00001f08                _ZN8SPIClass11setBitOrderEh
  .text._ZN8SPIClass11setDataModeEh
-                0x00001f58        0xa Drivers/SPI.o
-                0x00001f58                _ZN8SPIClass11setDataModeEh
+                0x00001f1c        0xa Drivers/SPI.o
+                0x00001f1c                _ZN8SPIClass11setDataModeEh
  .text._ZN8SPIClass15setClockDividerEh
-                0x00001f62       0x1e Drivers/SPI.o
-                0x00001f62                _ZN8SPIClass15setClockDividerEh
+                0x00001f26       0x1e Drivers/SPI.o
+                0x00001f26                _ZN8SPIClass15setClockDividerEh
  .text._ZN8SPIClass8transferEh
-                0x00001f80        0xc Drivers/SPI.o
-                0x00001f80                _ZN8SPIClass8transferEh
+                0x00001f44        0xc Drivers/SPI.o
+                0x00001f44                _ZN8SPIClass8transferEh
  .text._Z19handler_button_initv
-                0x00001f8c       0x1e Handlers/Handler_Button.o
-                0x00001f8c                _Z19handler_button_initv
+                0x00001f50       0x1e Handlers/Handler_Button.o
+                0x00001f50                _Z19handler_button_initv
  .text._Z23handler_button_mannagerv
-                0x00001faa      0x2b2 Handlers/Handler_Button.o
-                0x00001faa                _Z23handler_button_mannagerv
+                0x00001f6e      0x2b2 Handlers/Handler_Button.o
+                0x00001f6e                _Z23handler_button_mannagerv
  .text.__vector_2
-                0x0000225c       0x88 Handlers/Handler_Button.o
-                0x0000225c                __vector_2
+                0x00002220       0x88 Handlers/Handler_Button.o
+                0x00002220                __vector_2
  .text._Z20handler_display_initv
-                0x000022e4       0xfc Handlers/Handler_Display.o
-                0x000022e4                _Z20handler_display_initv
+                0x000022a8       0xfc Handlers/Handler_Display.o
+                0x000022a8                _Z20handler_display_initv
  .text._Z28handler_display_match_winnerv
-                0x000023e0      0x110 Handlers/Handler_Display.o
-                0x000023e0                _Z28handler_display_match_winnerv
+                0x000023a4      0x110 Handlers/Handler_Display.o
+                0x000023a4                _Z28handler_display_match_winnerv
  .text._Z23handler_display_managerv
-                0x000024f0      0x458 Handlers/Handler_Display.o
-                0x000024f0                _Z23handler_display_managerv
+                0x000024b4      0x458 Handlers/Handler_Display.o
+                0x000024b4                _Z23handler_display_managerv
  .text.__vector_7
-                0x00002948       0x4c Handlers/Handler_Display.o
-                0x00002948                __vector_7
- .text._GLOBAL__sub_I_dmd_buffer
-                0x00002994       0x12 Handlers/Handler_Display.o
- .text.main     0x000029a6       0x18 main.o
-                0x000029a6                main
+                0x0000290c       0x4c Handlers/Handler_Display.o
+                0x0000290c                __vector_7
+ .text._GLOBAL__sub_I_ttgame
+                0x00002958        0xe Handlers/Handler_Display.o
+ .text.main     0x00002966       0x18 main.o
+                0x00002966                main
  .text.libgcc.div
-                0x000029be       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
-                0x000029be                __udivmodhi4
+                0x0000297e       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
+                0x0000297e                __udivmodhi4
  .text.libgcc.div
-                0x000029e6       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
-                0x000029e6                _div
-                0x000029e6                __divmodhi4
- .text.libgcc   0x00002a0e        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00002a0e                __tablejump2__
+                0x000029a6       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
+                0x000029a6                _div
+                0x000029a6                __divmodhi4
+ .text.libgcc   0x000029ce        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x000029ce                __tablejump2__
  .text.avr-libc
-                0x00002a1a        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memset.o)
-                0x00002a1a                memset
+                0x000029da        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memset.o)
+                0x000029da                memset
  .text.avr-libc
-                0x00002a28       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
-                0x00002a28                sprintf
+                0x000029e8       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                0x000029e8                sprintf
  .text.avr-libc
-                0x00002a6c      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
-                0x00002a6c                vfprintf
+                0x00002a2c      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x00002a2c                vfprintf
  .text.avr-libc
-                0x00002e2e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
-                0x00002e2e                strnlen_P
+                0x00002dee       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00002dee                strnlen_P
  .text.avr-libc
-                0x00002e44       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
-                0x00002e44                strnlen
+                0x00002e04       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x00002e04                strnlen
  .text.avr-libc
-                0x00002e5a       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x00002e5a                fputc
+                0x00002e1a       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00002e1a                fputc
  .text.avr-libc
-                0x00002ed2       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
-                0x00002ed2                __ultoa_invert
+                0x00002e92       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00002e92                __ultoa_invert
  .text.libgcc.prologue
-                0x00002f8e       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
-                0x00002f8e                __prologue_saves__
+                0x00002f4e       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+                0x00002f4e                __prologue_saves__
  .text.libgcc.prologue
-                0x00002fc6       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
-                0x00002fc6                __epilogue_restores__
-                0x00002ffc                . = ALIGN (0x2)
+                0x00002f86       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+                0x00002f86                __epilogue_restores__
+                0x00002fbc                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002ffc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00002ffc                _exit
-                0x00002ffc                exit
+ .fini9         0x00002fbc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00002fbc                _exit
+                0x00002fbc                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -598,11 +598,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002ffc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00002fbc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00003000                _etext = .
+                0x00002fc0                _etext = .
 
-.data           0x00800100       0x5c load address 0x00003000
+.data           0x00800100       0x5c load address 0x00002fc0
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -622,7 +622,7 @@ END GROUP
                 0x0080015c                _edata = .
                 0x0080015c                PROVIDE (__data_end, .)
 
-.bss            0x0080015c      0x19a
+.bss            0x0080015c      0x198
                 0x0080015c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -640,28 +640,23 @@ END GROUP
                 0x00800176                softrtc
  .bss.ttgame    0x0080017d        0xe Handlers/Handler_Display.o
                 0x0080017d                ttgame
- .bss.team_b    0x0080018b        0x2 Handlers/Handler_Display.o
-                0x0080018b                team_b
- .bss.team_a    0x0080018d        0x2 Handlers/Handler_Display.o
-                0x0080018d                team_a
- .bss.digit_buffer
+ .bss._ZL6team_b
+                0x0080018b        0x2 Handlers/Handler_Display.o
+ .bss._ZL6team_a
+                0x0080018d        0x2 Handlers/Handler_Display.o
+ .bss._ZL12digit_buffer
                 0x0080018f       0x10 Handlers/Handler_Display.o
-                0x0080018f                digit_buffer
- .bss.dmd       0x0080019f      0x117 Handlers/Handler_Display.o
-                0x0080019f                dmd
- .bss.dmd_buffer
-                0x008002b6       0x40 Handlers/Handler_Display.o
-                0x008002b6                dmd_buffer
+ .bss._ZL3dmd   0x0080019f      0x155 Handlers/Handler_Display.o
  *(COMMON)
-                0x008002f6                PROVIDE (__bss_end, .)
-                0x00003000                __data_load_start = LOADADDR (.data)
-                0x0000305c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x008002f4                PROVIDE (__bss_end, .)
+                0x00002fc0                __data_load_start = LOADADDR (.data)
+                0x0000301c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002f6        0x0
+.noinit         0x008002f4        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008002f6                _end = .
+                0x008002f4                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -753,68 +748,68 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3a7a
+.debug_info     0x00000000     0x3a5b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4     0x1eb2 Drivers/DMD.o
- .debug_info    0x000024a6      0x154 Drivers/DriverIO.o
- .debug_info    0x000025fa      0x322 Drivers/SPI.o
- .debug_info    0x0000291c      0x481 Handlers/Handler_Button.o
- .debug_info    0x00002d9d      0xbd3 Handlers/Handler_Display.o
- .debug_info    0x00003970      0x10a main.o
+ .debug_info    0x000005f4     0x1ec2 Drivers/DMD.o
+ .debug_info    0x000024b6      0x154 Drivers/DriverIO.o
+ .debug_info    0x0000260a      0x322 Drivers/SPI.o
+ .debug_info    0x0000292c      0x481 Handlers/Handler_Button.o
+ .debug_info    0x00002dad      0xba4 Handlers/Handler_Display.o
+ .debug_info    0x00003951      0x10a main.o
 
-.debug_abbrev   0x00000000      0xf42
+.debug_abbrev   0x00000000      0xf3e
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_abbrev  0x000005a2      0x30a Drivers/DMD.o
- .debug_abbrev  0x000008ac       0xbb Drivers/DriverIO.o
- .debug_abbrev  0x00000967      0x114 Drivers/SPI.o
- .debug_abbrev  0x00000a7b      0x185 Handlers/Handler_Button.o
- .debug_abbrev  0x00000c00      0x2d9 Handlers/Handler_Display.o
- .debug_abbrev  0x00000ed9       0x69 main.o
+ .debug_abbrev  0x000005a2      0x308 Drivers/DMD.o
+ .debug_abbrev  0x000008aa       0xbb Drivers/DriverIO.o
+ .debug_abbrev  0x00000965      0x114 Drivers/SPI.o
+ .debug_abbrev  0x00000a79      0x185 Handlers/Handler_Button.o
+ .debug_abbrev  0x00000bfe      0x2d7 Handlers/Handler_Display.o
+ .debug_abbrev  0x00000ed5       0x69 main.o
 
-.debug_line     0x00000000     0x167d
+.debug_line     0x00000000     0x1663
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000133      0x9d3 Drivers/DMD.o
- .debug_line    0x00000b06      0x14d Drivers/DriverIO.o
- .debug_line    0x00000c53      0x179 Drivers/SPI.o
- .debug_line    0x00000dcc      0x331 Handlers/Handler_Button.o
- .debug_line    0x000010fd      0x4cb Handlers/Handler_Display.o
- .debug_line    0x000015c8       0xb5 main.o
+ .debug_line    0x00000133      0x9b9 Drivers/DMD.o
+ .debug_line    0x00000aec      0x14d Drivers/DriverIO.o
+ .debug_line    0x00000c39      0x179 Drivers/SPI.o
+ .debug_line    0x00000db2      0x331 Handlers/Handler_Button.o
+ .debug_line    0x000010e3      0x4cb Handlers/Handler_Display.o
+ .debug_line    0x000015ae       0xb5 main.o
 
-.debug_frame    0x00000000      0x788
+.debug_frame    0x00000000      0x794
  *(.debug_frame)
- .debug_frame   0x00000000      0x4a8 Drivers/DMD.o
- .debug_frame   0x000004a8       0x6c Drivers/DriverIO.o
- .debug_frame   0x00000514       0x94 Drivers/SPI.o
- .debug_frame   0x000005a8       0xa0 Handlers/Handler_Button.o
- .debug_frame   0x00000648      0x11c Handlers/Handler_Display.o
- .debug_frame   0x00000764       0x24 main.o
+ .debug_frame   0x00000000      0x4b4 Drivers/DMD.o
+ .debug_frame   0x000004b4       0x6c Drivers/DriverIO.o
+ .debug_frame   0x00000520       0x94 Drivers/SPI.o
+ .debug_frame   0x000005b4       0xa0 Handlers/Handler_Button.o
+ .debug_frame   0x00000654      0x11c Handlers/Handler_Display.o
+ .debug_frame   0x00000770       0x24 main.o
 
-.debug_str      0x00000000      0xfa5
+.debug_str      0x00000000      0xf88
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x71a Drivers/DMD.o
-                                0x758 (size before relaxing)
- .debug_str     0x00000922       0x9a Drivers/DriverIO.o
-                                0x23e (size before relaxing)
- .debug_str     0x000009bc       0x21 Drivers/SPI.o
-                                0x305 (size before relaxing)
- .debug_str     0x000009dd      0x3d5 Handlers/Handler_Button.o
-                                0x5f6 (size before relaxing)
- .debug_str     0x00000db2      0x1e0 Handlers/Handler_Display.o
-                                0x8ba (size before relaxing)
- .debug_str     0x00000f92       0x13 main.o
-                                0x28f (size before relaxing)
+ .debug_str     0x00000208      0x708 Drivers/DMD.o
+                                0x746 (size before relaxing)
+ .debug_str     0x00000910       0x9a Drivers/DriverIO.o
+                                0x23d (size before relaxing)
+ .debug_str     0x000009aa       0x21 Drivers/SPI.o
+                                0x304 (size before relaxing)
+ .debug_str     0x000009cb      0x3ce Handlers/Handler_Button.o
+                                0x5f5 (size before relaxing)
+ .debug_str     0x00000d99      0x1dc Handlers/Handler_Display.o
+                                0x8a8 (size before relaxing)
+ .debug_str     0x00000f75       0x13 main.o
+                                0x28e (size before relaxing)
 
-.debug_loc      0x00000000     0x33f4
+.debug_loc      0x00000000     0x31e7
  *(.debug_loc)
- .debug_loc     0x00000000     0x2bcb Drivers/DMD.o
- .debug_loc     0x00002bcb      0x135 Drivers/DriverIO.o
- .debug_loc     0x00002d00      0x190 Drivers/SPI.o
- .debug_loc     0x00002e90      0x138 Handlers/Handler_Button.o
- .debug_loc     0x00002fc8      0x42c Handlers/Handler_Display.o
+ .debug_loc     0x00000000     0x29be Drivers/DMD.o
+ .debug_loc     0x000029be      0x135 Drivers/DriverIO.o
+ .debug_loc     0x00002af3      0x190 Drivers/SPI.o
+ .debug_loc     0x00002c83      0x138 Handlers/Handler_Button.o
+ .debug_loc     0x00002dbb      0x42c Handlers/Handler_Display.o
 
 .debug_macinfo
  *(.debug_macinfo)
