@@ -18,13 +18,13 @@
 #include "Handler_Button.h"
 #include "Handler_Display.h"
 
+tt_game_t ttgame;
+char tittle_text[] = "ReliSource TT Score Board, Powered by Firmware Team!";
+
 static DMD dmd(1, 1);
 static char digit_buffer[16];
 static tt_team_t team_a;
 static tt_team_t team_b;
-
-tt_game_t ttgame;
-char tittle_text[] = "ReliSource TT Score Board, Powered by Firmware Team!";
 
 static void handler_display_scan_isr();
 static void handler_display_test_pixel_by_column();

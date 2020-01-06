@@ -52,8 +52,6 @@ typedef struct _remote_input_t
 	uint8_t button_short_press;
 	uint8_t button_long_press;
 	uint8_t debounce_long_count;
-	Timer_t debounce_backup_timer;
-	Timer_t debounce_short_timer;
 	Timer_t debounce_long_timer;	
 } remote_input_t;
 

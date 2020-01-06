@@ -622,7 +622,7 @@ END GROUP
                 0x0080015c                _edata = .
                 0x0080015c                PROVIDE (__data_end, .)
 
-.bss            0x0080015c      0x198
+.bss            0x0080015c      0x190
                 0x0080015c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -634,29 +634,29 @@ END GROUP
                 0x00800164        0x1 Drivers/DriverIO.o
  .bss.SPI       0x00800165        0x1 Drivers/SPI.o
                 0x00800165                SPI
- .bss.remote    0x00800166       0x10 Handlers/Handler_Button.o
+ .bss.remote    0x00800166        0x8 Handlers/Handler_Button.o
                 0x00800166                remote
- .bss.softrtc   0x00800176        0x7 Handlers/Handler_Button.o
-                0x00800176                softrtc
- .bss.ttgame    0x0080017d        0xe Handlers/Handler_Display.o
-                0x0080017d                ttgame
+ .bss.softrtc   0x0080016e        0x7 Handlers/Handler_Button.o
+                0x0080016e                softrtc
  .bss._ZL6team_b
-                0x0080018b        0x2 Handlers/Handler_Display.o
+                0x00800175        0x2 Handlers/Handler_Display.o
  .bss._ZL6team_a
-                0x0080018d        0x2 Handlers/Handler_Display.o
+                0x00800177        0x2 Handlers/Handler_Display.o
  .bss._ZL12digit_buffer
-                0x0080018f       0x10 Handlers/Handler_Display.o
- .bss._ZL3dmd   0x0080019f      0x155 Handlers/Handler_Display.o
+                0x00800179       0x10 Handlers/Handler_Display.o
+ .bss._ZL3dmd   0x00800189      0x155 Handlers/Handler_Display.o
+ .bss.ttgame    0x008002de        0xe Handlers/Handler_Display.o
+                0x008002de                ttgame
  *(COMMON)
-                0x008002f4                PROVIDE (__bss_end, .)
+                0x008002ec                PROVIDE (__bss_end, .)
                 0x00002fc0                __data_load_start = LOADADDR (.data)
                 0x0000301c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002f4        0x0
+.noinit         0x008002ec        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008002f4                _end = .
+                0x008002ec                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -748,15 +748,15 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3a5b
+.debug_info     0x00000000     0x3a3f
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4     0x1ec2 Drivers/DMD.o
  .debug_info    0x000024b6      0x154 Drivers/DriverIO.o
  .debug_info    0x0000260a      0x322 Drivers/SPI.o
- .debug_info    0x0000292c      0x481 Handlers/Handler_Button.o
- .debug_info    0x00002dad      0xba4 Handlers/Handler_Display.o
- .debug_info    0x00003951      0x10a main.o
+ .debug_info    0x0000292c      0x465 Handlers/Handler_Button.o
+ .debug_info    0x00002d91      0xba4 Handlers/Handler_Display.o
+ .debug_info    0x00003935      0x10a main.o
 
 .debug_abbrev   0x00000000      0xf3e
  *(.debug_abbrev)
@@ -787,7 +787,7 @@ END GROUP
  .debug_frame   0x00000654      0x11c Handlers/Handler_Display.o
  .debug_frame   0x00000770       0x24 main.o
 
-.debug_str      0x00000000      0xf88
+.debug_str      0x00000000      0xf5d
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x708 Drivers/DMD.o
@@ -796,11 +796,11 @@ END GROUP
                                 0x23d (size before relaxing)
  .debug_str     0x000009aa       0x21 Drivers/SPI.o
                                 0x304 (size before relaxing)
- .debug_str     0x000009cb      0x3ce Handlers/Handler_Button.o
-                                0x5f5 (size before relaxing)
- .debug_str     0x00000d99      0x1dc Handlers/Handler_Display.o
+ .debug_str     0x000009cb      0x3a3 Handlers/Handler_Button.o
+                                0x5ca (size before relaxing)
+ .debug_str     0x00000d6e      0x1dc Handlers/Handler_Display.o
                                 0x8a8 (size before relaxing)
- .debug_str     0x00000f75       0x13 main.o
+ .debug_str     0x00000f4a       0x13 main.o
                                 0x28e (size before relaxing)
 
 .debug_loc      0x00000000     0x31e7

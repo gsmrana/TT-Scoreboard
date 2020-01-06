@@ -7,7 +7,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         00002fc0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000198  0080015c  0080015c  000030b0  2**0
+  2 .bss          00000190  0080015c  0080015c  000030b0  2**0
                   ALLOC
   3 .comment      0000005c  00000000  00000000  000030b0  2**0
                   CONTENTS, READONLY
@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001b0  00000000  00000000  0000314c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00003a5b  00000000  00000000  000032fc  2**0
+  6 .debug_info   00003a3f  00000000  00000000  000032fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000f3e  00000000  00000000  00006d57  2**0
+  7 .debug_abbrev 00000f3e  00000000  00000000  00006d3b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001663  00000000  00000000  00007c95  2**0
+  8 .debug_line   00001663  00000000  00000000  00007c79  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000794  00000000  00000000  000092f8  2**2
+  9 .debug_frame  00000794  00000000  00000000  000092dc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000f88  00000000  00000000  00009a8c  2**0
+ 10 .debug_str    00000f5d  00000000  00000000  00009a70  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000031e7  00000000  00000000  0000aa14  2**0
+ 11 .debug_loc    000031e7  00000000  00000000  0000a9cd  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001c8  00000000  00000000  0000dbfb  2**0
+ 12 .debug_ranges 000001c8  00000000  00000000  0000dbb4  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -771,7 +771,7 @@ Disassembly of section .text:
      5fc:	1f 00       	.word	0x001f	; ????
      5fe:	00 00       	nop
      600:	e0 f0       	brcs	.+56     	; 0x63a <__LOCK_REGION_LENGTH__+0x23a>
-     602:	f0 90 90 b0 	lds	r15, 0xB090	; 0x80b090 <__bss_end+0xad9c>
+     602:	f0 90 90 b0 	lds	r15, 0xB090	; 0x80b090 <__bss_end+0xada4>
      606:	30 20       	and	r3, r0
      608:	08 19       	sub	r16, r8
      60a:	1b 13       	cpse	r17, r27
@@ -1020,7 +1020,7 @@ Disassembly of section .text:
      d9a:	1d 92       	st	X+, r1
 
 00000d9c <.do_clear_bss_start>:
-     d9c:	a4 3f       	cpi	r26, 0xF4	; 244
+     d9c:	ac 3e       	cpi	r26, 0xEC	; 236
      d9e:	b2 07       	cpc	r27, r18
      da0:	e1 f7       	brne	.-8      	; 0xd9a <.do_clear_bss_loop>
 
@@ -3941,10 +3941,10 @@ void handler_button_mannager()
     1f70:	1f 93       	push	r17
 	if (Millis > softrtc.isr_timer)
     1f72:	0e 94 27 0f 	call	0x1e4e	; 0x1e4e <_Z6millisv>
-    1f76:	00 91 79 01 	lds	r16, 0x0179	; 0x800179 <softrtc+0x3>
-    1f7a:	10 91 7a 01 	lds	r17, 0x017A	; 0x80017a <softrtc+0x4>
-    1f7e:	20 91 7b 01 	lds	r18, 0x017B	; 0x80017b <softrtc+0x5>
-    1f82:	30 91 7c 01 	lds	r19, 0x017C	; 0x80017c <softrtc+0x6>
+    1f76:	00 91 71 01 	lds	r16, 0x0171	; 0x800171 <softrtc+0x3>
+    1f7a:	10 91 72 01 	lds	r17, 0x0172	; 0x800172 <softrtc+0x4>
+    1f7e:	20 91 73 01 	lds	r18, 0x0173	; 0x800173 <softrtc+0x5>
+    1f82:	30 91 74 01 	lds	r19, 0x0174	; 0x800174 <softrtc+0x6>
     1f86:	06 17       	cp	r16, r22
     1f88:	17 07       	cpc	r17, r23
     1f8a:	28 07       	cpc	r18, r24
@@ -3956,19 +3956,19 @@ void handler_button_mannager()
 static void handler_softrtc_update_isr()
 {
 	if(ttgame.match_state == MATCH_FINISHED)
-    1f90:	80 91 80 01 	lds	r24, 0x0180	; 0x800180 <ttgame+0x3>
+    1f90:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <ttgame+0x3>
     1f94:	82 30       	cpi	r24, 0x02	; 2
     1f96:	21 f4       	brne	.+8      	; 0x1fa0 <_Z23handler_button_mannagerv+0x32>
 	{
 		softrtc.colon_on = true;
     1f98:	81 e0       	ldi	r24, 0x01	; 1
-    1f9a:	80 93 78 01 	sts	0x0178, r24	; 0x800178 <softrtc+0x2>
+    1f9a:	80 93 70 01 	sts	0x0170, r24	; 0x800170 <softrtc+0x2>
     1f9e:	19 c0       	rjmp	.+50     	; 0x1fd2 <_Z23handler_button_mannagerv+0x64>
 		return;
 	}
 	
 	softrtc.second++;
-    1fa0:	e6 e7       	ldi	r30, 0x76	; 118
+    1fa0:	ee e6       	ldi	r30, 0x6E	; 110
     1fa2:	f1 e0       	ldi	r31, 0x01	; 1
     1fa4:	80 81       	ld	r24, Z
     1fa6:	8f 5f       	subi	r24, 0xFF	; 255
@@ -3978,7 +3978,7 @@ static void handler_softrtc_update_isr()
     1fac:	81 e0       	ldi	r24, 0x01	; 1
     1fae:	91 11       	cpse	r25, r1
     1fb0:	80 e0       	ldi	r24, 0x00	; 0
-    1fb2:	e6 e7       	ldi	r30, 0x76	; 118
+    1fb2:	ee e6       	ldi	r30, 0x6E	; 110
     1fb4:	f1 e0       	ldi	r31, 0x01	; 1
     1fb6:	82 83       	std	Z+2, r24	; 0x02
 	if (softrtc.second >= 60)
@@ -3994,12 +3994,12 @@ static void handler_softrtc_update_isr()
     1fc4:	10 82       	st	Z, r1
 	}
 	if (softrtc.minute >= 60)
-    1fc6:	80 91 77 01 	lds	r24, 0x0177	; 0x800177 <softrtc+0x1>
+    1fc6:	80 91 6f 01 	lds	r24, 0x016F	; 0x80016f <softrtc+0x1>
     1fca:	8c 33       	cpi	r24, 0x3C	; 60
     1fcc:	10 f0       	brcs	.+4      	; 0x1fd2 <_Z23handler_button_mannagerv+0x64>
 	{
 		softrtc.minute = 0;
-    1fce:	10 92 77 01 	sts	0x0177, r1	; 0x800177 <softrtc+0x1>
+    1fce:	10 92 6f 01 	sts	0x016F, r1	; 0x80016f <softrtc+0x1>
 void handler_button_mannager()
 {
 	if (Millis > softrtc.isr_timer)
@@ -4013,10 +4013,10 @@ void handler_button_mannager()
     1fdc:	9c 4f       	sbci	r25, 0xFC	; 252
     1fde:	af 4f       	sbci	r26, 0xFF	; 255
     1fe0:	bf 4f       	sbci	r27, 0xFF	; 255
-    1fe2:	80 93 79 01 	sts	0x0179, r24	; 0x800179 <softrtc+0x3>
-    1fe6:	90 93 7a 01 	sts	0x017A, r25	; 0x80017a <softrtc+0x4>
-    1fea:	a0 93 7b 01 	sts	0x017B, r26	; 0x80017b <softrtc+0x5>
-    1fee:	b0 93 7c 01 	sts	0x017C, r27	; 0x80017c <softrtc+0x6>
+    1fe2:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <softrtc+0x3>
+    1fe6:	90 93 72 01 	sts	0x0172, r25	; 0x800172 <softrtc+0x4>
+    1fea:	a0 93 73 01 	sts	0x0173, r26	; 0x800173 <softrtc+0x5>
+    1fee:	b0 93 74 01 	sts	0x0174, r27	; 0x800174 <softrtc+0x6>
 	}
 }
 
@@ -4036,17 +4036,17 @@ static void handler_button_short_press()
 		DebugLog("Short Press: A");
     2004:	00 00       	nop
 		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED)
-    2006:	80 91 7d 01 	lds	r24, 0x017D	; 0x80017d <ttgame>
+    2006:	80 91 de 02 	lds	r24, 0x02DE	; 0x8002de <ttgame>
     200a:	81 30       	cpi	r24, 0x01	; 1
     200c:	69 f4       	brne	.+26     	; 0x2028 <_Z23handler_button_mannagerv+0xba>
-    200e:	80 91 80 01 	lds	r24, 0x0180	; 0x800180 <ttgame+0x3>
+    200e:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <ttgame+0x3>
     2012:	82 30       	cpi	r24, 0x02	; 2
     2014:	48 f4       	brcc	.+18     	; 0x2028 <_Z23handler_button_mannagerv+0xba>
 		{
 			// left team score increment
 			ttgame.left_team->match_score++;			
-    2016:	e0 91 81 01 	lds	r30, 0x0181	; 0x800181 <ttgame+0x4>
-    201a:	f0 91 82 01 	lds	r31, 0x0182	; 0x800182 <ttgame+0x5>
+    2016:	e0 91 e2 02 	lds	r30, 0x02E2	; 0x8002e2 <ttgame+0x4>
+    201a:	f0 91 e3 02 	lds	r31, 0x02E3	; 0x8002e3 <ttgame+0x5>
     201e:	80 81       	ld	r24, Z
     2020:	8f 5f       	subi	r24, 0xFF	; 255
     2022:	80 83       	st	Z, r24
@@ -4069,17 +4069,17 @@ static void handler_button_short_press()
 		DebugLog("Short Press: B");
     203a:	00 00       	nop
 		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED)
-    203c:	80 91 7d 01 	lds	r24, 0x017D	; 0x80017d <ttgame>
+    203c:	80 91 de 02 	lds	r24, 0x02DE	; 0x8002de <ttgame>
     2040:	81 30       	cpi	r24, 0x01	; 1
     2042:	69 f4       	brne	.+26     	; 0x205e <_Z23handler_button_mannagerv+0xf0>
-    2044:	80 91 80 01 	lds	r24, 0x0180	; 0x800180 <ttgame+0x3>
+    2044:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <ttgame+0x3>
     2048:	82 30       	cpi	r24, 0x02	; 2
     204a:	48 f4       	brcc	.+18     	; 0x205e <_Z23handler_button_mannagerv+0xf0>
 		{
 			// right team score increment
 			ttgame.right_team->match_score++;
-    204c:	e0 91 83 01 	lds	r30, 0x0183	; 0x800183 <ttgame+0x6>
-    2050:	f0 91 84 01 	lds	r31, 0x0184	; 0x800184 <ttgame+0x7>
+    204c:	e0 91 e4 02 	lds	r30, 0x02E4	; 0x8002e4 <ttgame+0x6>
+    2050:	f0 91 e5 02 	lds	r31, 0x02E5	; 0x8002e5 <ttgame+0x7>
     2054:	80 81       	ld	r24, Z
     2056:	8f 5f       	subi	r24, 0xFF	; 255
     2058:	80 83       	st	Z, r24
@@ -4104,8 +4104,8 @@ static void handler_button_short_press()
 		
 		// clear match score
 		ttgame.left_team->match_score = 0;
-    2072:	ed e7       	ldi	r30, 0x7D	; 125
-    2074:	f1 e0       	ldi	r31, 0x01	; 1
+    2072:	ee ed       	ldi	r30, 0xDE	; 222
+    2074:	f2 e0       	ldi	r31, 0x02	; 2
     2076:	a4 81       	ldd	r26, Z+4	; 0x04
     2078:	b5 81       	ldd	r27, Z+5	; 0x05
     207a:	1c 92       	st	X, r1
@@ -4114,7 +4114,7 @@ static void handler_button_short_press()
     207e:	b7 81       	ldd	r27, Z+7	; 0x07
     2080:	1c 92       	st	X, r1
 		softrtc.minute = 0;
-    2082:	a6 e7       	ldi	r26, 0x76	; 118
+    2082:	ae e6       	ldi	r26, 0x6E	; 110
     2084:	b1 e0       	ldi	r27, 0x01	; 1
     2086:	11 96       	adiw	r26, 0x01	; 1
     2088:	1c 92       	st	X, r1
@@ -4134,15 +4134,15 @@ static void handler_button_short_press()
     20a0:	80 fd       	sbrc	r24, 0
     20a2:	03 c0       	rjmp	.+6      	; 0x20aa <_Z23handler_button_mannagerv+0x13c>
 			ttgame.service_side = PLAYER_SIDE_LEFT;
-    20a4:	10 92 7f 01 	sts	0x017F, r1	; 0x80017f <ttgame+0x2>
+    20a4:	10 92 e0 02 	sts	0x02E0, r1	; 0x8002e0 <ttgame+0x2>
     20a8:	03 c0       	rjmp	.+6      	; 0x20b0 <_Z23handler_button_mannagerv+0x142>
 		else 
 			ttgame.service_side = PLAYER_SIDE_RIGHT;
     20aa:	81 e0       	ldi	r24, 0x01	; 1
-    20ac:	80 93 7f 01 	sts	0x017F, r24	; 0x80017f <ttgame+0x2>
+    20ac:	80 93 e0 02 	sts	0x02E0, r24	; 0x8002e0 <ttgame+0x2>
 		ttgame.match_winner_side = PLAYER_SIDE_NONE;
-    20b0:	ed e7       	ldi	r30, 0x7D	; 125
-    20b2:	f1 e0       	ldi	r31, 0x01	; 1
+    20b0:	ee ed       	ldi	r30, 0xDE	; 222
+    20b2:	f2 e0       	ldi	r31, 0x02	; 2
     20b4:	82 e0       	ldi	r24, 0x02	; 2
     20b6:	80 87       	std	Z+8, r24	; 0x08
 		ttgame.match_state = MATCH_RUNNING;
@@ -4165,8 +4165,8 @@ static void handler_button_short_press()
 		
 		// switch display app modes
 		ttgame.app_mode++;
-    20ce:	ed e7       	ldi	r30, 0x7D	; 125
-    20d0:	f1 e0       	ldi	r31, 0x01	; 1
+    20ce:	ee ed       	ldi	r30, 0xDE	; 222
+    20d0:	f2 e0       	ldi	r31, 0x02	; 2
     20d2:	80 81       	ld	r24, Z
     20d4:	8f 5f       	subi	r24, 0xFF	; 255
     20d6:	80 83       	st	Z, r24
@@ -4175,13 +4175,13 @@ static void handler_button_short_press()
     20da:	d8 f0       	brcs	.+54     	; 0x2112 <_Z23handler_button_mannagerv+0x1a4>
 		{
 			if(ttgame.left_team->match_score > 0 || ttgame.right_team->match_score > 0 ||
-    20dc:	e0 91 81 01 	lds	r30, 0x0181	; 0x800181 <ttgame+0x4>
-    20e0:	f0 91 82 01 	lds	r31, 0x0182	; 0x800182 <ttgame+0x5>
+    20dc:	e0 91 e2 02 	lds	r30, 0x02E2	; 0x8002e2 <ttgame+0x4>
+    20e0:	f0 91 e3 02 	lds	r31, 0x02E3	; 0x8002e3 <ttgame+0x5>
     20e4:	80 81       	ld	r24, Z
     20e6:	81 11       	cpse	r24, r1
     20e8:	0e c0       	rjmp	.+28     	; 0x2106 <_Z23handler_button_mannagerv+0x198>
-    20ea:	a0 91 83 01 	lds	r26, 0x0183	; 0x800183 <ttgame+0x6>
-    20ee:	b0 91 84 01 	lds	r27, 0x0184	; 0x800184 <ttgame+0x7>
+    20ea:	a0 91 e4 02 	lds	r26, 0x02E4	; 0x8002e4 <ttgame+0x6>
+    20ee:	b0 91 e5 02 	lds	r27, 0x02E5	; 0x8002e5 <ttgame+0x7>
     20f2:	8c 91       	ld	r24, X
     20f4:	81 11       	cpse	r24, r1
     20f6:	07 c0       	rjmp	.+14     	; 0x2106 <_Z23handler_button_mannagerv+0x198>
@@ -4195,13 +4195,13 @@ static void handler_button_short_press()
     2104:	21 f0       	breq	.+8      	; 0x210e <_Z23handler_button_mannagerv+0x1a0>
 				ttgame.app_mode = APP_MODE_MATCH;
     2106:	81 e0       	ldi	r24, 0x01	; 1
-    2108:	80 93 7d 01 	sts	0x017D, r24	; 0x80017d <ttgame>
+    2108:	80 93 de 02 	sts	0x02DE, r24	; 0x8002de <ttgame>
     210c:	02 c0       	rjmp	.+4      	; 0x2112 <_Z23handler_button_mannagerv+0x1a4>
 			else ttgame.app_mode = APP_MODE_TITTLE;
-    210e:	10 92 7d 01 	sts	0x017D, r1	; 0x80017d <ttgame>
+    210e:	10 92 de 02 	sts	0x02DE, r1	; 0x8002de <ttgame>
 		}
 		ttgame.display_state = DISPLAY_INIT;
-    2112:	10 92 7e 01 	sts	0x017E, r1	; 0x80017e <ttgame+0x1>
+    2112:	10 92 df 02 	sts	0x02DF, r1	; 0x8002df <ttgame+0x1>
 	}
 }
 
@@ -4223,8 +4223,8 @@ static void handler_button_long_press()
 		
 		// clear series score
 		ttgame.left_team->match_score = 0;
-    212a:	ed e7       	ldi	r30, 0x7D	; 125
-    212c:	f1 e0       	ldi	r31, 0x01	; 1
+    212a:	ee ed       	ldi	r30, 0xDE	; 222
+    212c:	f2 e0       	ldi	r31, 0x02	; 2
     212e:	a4 81       	ldd	r26, Z+4	; 0x04
     2130:	b5 81       	ldd	r27, Z+5	; 0x05
     2132:	1c 92       	st	X, r1
@@ -4243,7 +4243,7 @@ static void handler_button_long_press()
     2146:	11 96       	adiw	r26, 0x01	; 1
     2148:	1c 92       	st	X, r1
 		softrtc.minute = 0;
-    214a:	a6 e7       	ldi	r26, 0x76	; 118
+    214a:	ae e6       	ldi	r26, 0x6E	; 110
     214c:	b1 e0       	ldi	r27, 0x01	; 1
     214e:	11 96       	adiw	r26, 0x01	; 1
     2150:	1c 92       	st	X, r1
@@ -4275,22 +4275,22 @@ static void handler_button_long_press()
 		
 		// toggle team side
 		if(ttgame.service_side == PLAYER_SIDE_LEFT)
-    2172:	80 91 7f 01 	lds	r24, 0x017F	; 0x80017f <ttgame+0x2>
+    2172:	80 91 e0 02 	lds	r24, 0x02E0	; 0x8002e0 <ttgame+0x2>
     2176:	81 11       	cpse	r24, r1
     2178:	04 c0       	rjmp	.+8      	; 0x2182 <_Z23handler_button_mannagerv+0x214>
 			ttgame.service_side = PLAYER_SIDE_RIGHT;
     217a:	81 e0       	ldi	r24, 0x01	; 1
-    217c:	80 93 7f 01 	sts	0x017F, r24	; 0x80017f <ttgame+0x2>
+    217c:	80 93 e0 02 	sts	0x02E0, r24	; 0x8002e0 <ttgame+0x2>
     2180:	04 c0       	rjmp	.+8      	; 0x218a <_Z23handler_button_mannagerv+0x21c>
 		else if(ttgame.service_side == PLAYER_SIDE_RIGHT)
     2182:	81 30       	cpi	r24, 0x01	; 1
     2184:	11 f4       	brne	.+4      	; 0x218a <_Z23handler_button_mannagerv+0x21c>
 			ttgame.service_side = PLAYER_SIDE_LEFT;			
-    2186:	10 92 7f 01 	sts	0x017F, r1	; 0x80017f <ttgame+0x2>
+    2186:	10 92 e0 02 	sts	0x02E0, r1	; 0x8002e0 <ttgame+0x2>
 		
 		tt_team_t *tt_team_ptr = ttgame.left_team;
-    218a:	ed e7       	ldi	r30, 0x7D	; 125
-    218c:	f1 e0       	ldi	r31, 0x01	; 1
+    218a:	ee ed       	ldi	r30, 0xDE	; 222
+    218c:	f2 e0       	ldi	r31, 0x02	; 2
     218e:	84 81       	ldd	r24, Z+4	; 0x04
     2190:	95 81       	ldd	r25, Z+5	; 0x05
 		ttgame.left_team = ttgame.right_team;
@@ -4308,13 +4308,13 @@ static void handler_button_long_press()
     21a2:	04 c0       	rjmp	.+8      	; 0x21ac <_Z23handler_button_mannagerv+0x23e>
 			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
     21a4:	81 e0       	ldi	r24, 0x01	; 1
-    21a6:	80 93 85 01 	sts	0x0185, r24	; 0x800185 <ttgame+0x8>
+    21a6:	80 93 e6 02 	sts	0x02E6, r24	; 0x8002e6 <ttgame+0x8>
     21aa:	04 c0       	rjmp	.+8      	; 0x21b4 <_Z23handler_button_mannagerv+0x246>
 		else if(ttgame.match_winner_side == PLAYER_SIDE_RIGHT)
     21ac:	81 30       	cpi	r24, 0x01	; 1
     21ae:	11 f4       	brne	.+4      	; 0x21b4 <_Z23handler_button_mannagerv+0x246>
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
-    21b0:	10 92 85 01 	sts	0x0185, r1	; 0x800185 <ttgame+0x8>
+    21b0:	10 92 e6 02 	sts	0x02E6, r1	; 0x8002e6 <ttgame+0x8>
 	DebugLog("\rremote_isr: %d, %.2X, ", vtstate, remote.button_short_press);
 }
 
@@ -4332,10 +4332,10 @@ static void handler_remote_long_press_debounce()
     21c4:	98 13       	cpse	r25, r24
     21c6:	29 c0       	rjmp	.+82     	; 0x221a <_Z23handler_button_mannagerv+0x2ac>
     21c8:	0e 94 27 0f 	call	0x1e4e	; 0x1e4e <_Z6millisv>
-    21cc:	00 91 72 01 	lds	r16, 0x0172	; 0x800172 <remote+0xc>
-    21d0:	10 91 73 01 	lds	r17, 0x0173	; 0x800173 <remote+0xd>
-    21d4:	20 91 74 01 	lds	r18, 0x0174	; 0x800174 <remote+0xe>
-    21d8:	30 91 75 01 	lds	r19, 0x0175	; 0x800175 <remote+0xf>
+    21cc:	00 91 6a 01 	lds	r16, 0x016A	; 0x80016a <remote+0x4>
+    21d0:	10 91 6b 01 	lds	r17, 0x016B	; 0x80016b <remote+0x5>
+    21d4:	20 91 6c 01 	lds	r18, 0x016C	; 0x80016c <remote+0x6>
+    21d8:	30 91 6d 01 	lds	r19, 0x016D	; 0x80016d <remote+0x7>
     21dc:	06 17       	cp	r16, r22
     21de:	17 07       	cpc	r17, r23
     21e0:	28 07       	cpc	r18, r24
@@ -4365,10 +4365,10 @@ static void handler_remote_long_press_debounce()
     2204:	9e 4f       	sbci	r25, 0xFE	; 254
     2206:	af 4f       	sbci	r26, 0xFF	; 255
     2208:	bf 4f       	sbci	r27, 0xFF	; 255
-    220a:	80 93 72 01 	sts	0x0172, r24	; 0x800172 <remote+0xc>
-    220e:	90 93 73 01 	sts	0x0173, r25	; 0x800173 <remote+0xd>
-    2212:	a0 93 74 01 	sts	0x0174, r26	; 0x800174 <remote+0xe>
-    2216:	b0 93 75 01 	sts	0x0175, r27	; 0x800175 <remote+0xf>
+    220a:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <remote+0x4>
+    220e:	90 93 6b 01 	sts	0x016B, r25	; 0x80016b <remote+0x5>
+    2212:	a0 93 6c 01 	sts	0x016C, r26	; 0x80016c <remote+0x6>
+    2216:	b0 93 6d 01 	sts	0x016D, r27	; 0x80016d <remote+0x7>
 	}
 	
 	handler_button_short_press();
@@ -4425,10 +4425,10 @@ static void handler_remote_button_press_isr()
     225e:	9e 4f       	sbci	r25, 0xFE	; 254
     2260:	af 4f       	sbci	r26, 0xFF	; 255
     2262:	bf 4f       	sbci	r27, 0xFF	; 255
-    2264:	8c 87       	std	Y+12, r24	; 0x0c
-    2266:	9d 87       	std	Y+13, r25	; 0x0d
-    2268:	ae 87       	std	Y+14, r26	; 0x0e
-    226a:	bf 87       	std	Y+15, r27	; 0x0f
+    2264:	8c 83       	std	Y+4, r24	; 0x04
+    2266:	9d 83       	std	Y+5, r25	; 0x05
+    2268:	ae 83       	std	Y+6, r26	; 0x06
+    226a:	bf 83       	std	Y+7, r27	; 0x07
     226c:	09 c0       	rjmp	.+18     	; 0x2280 <__vector_2+0x60>
 	}
 	else //falling edge, button released
@@ -4486,20 +4486,20 @@ void handler_display_init()
     22a8:	0f 93       	push	r16
     22aa:	cf 93       	push	r28
 	ttgame.left_team = &team_a;
-    22ac:	ed e7       	ldi	r30, 0x7D	; 125
-    22ae:	f1 e0       	ldi	r31, 0x01	; 1
-    22b0:	8d e8       	ldi	r24, 0x8D	; 141
+    22ac:	ee ed       	ldi	r30, 0xDE	; 222
+    22ae:	f2 e0       	ldi	r31, 0x02	; 2
+    22b0:	87 e7       	ldi	r24, 0x77	; 119
     22b2:	91 e0       	ldi	r25, 0x01	; 1
     22b4:	95 83       	std	Z+5, r25	; 0x05
     22b6:	84 83       	std	Z+4, r24	; 0x04
 	ttgame.right_team = &team_b;
-    22b8:	8b e8       	ldi	r24, 0x8B	; 139
+    22b8:	85 e7       	ldi	r24, 0x75	; 117
     22ba:	91 e0       	ldi	r25, 0x01	; 1
     22bc:	97 83       	std	Z+7, r25	; 0x07
     22be:	86 83       	std	Z+6, r24	; 0x06
 	dmd.clearScreen(false);
     22c0:	60 e0       	ldi	r22, 0x00	; 0
-    22c2:	8f e9       	ldi	r24, 0x9F	; 159
+    22c2:	89 e8       	ldi	r24, 0x89	; 137
     22c4:	91 e0       	ldi	r25, 0x01	; 1
     22c6:	0e 94 98 07 	call	0xf30	; 0xf30 <_ZN3DMD11clearScreenEh>
 	DMD_SCAN_ISR__Init();	
@@ -4532,7 +4532,7 @@ static void handler_display_test_pattern()
 {
 	dmd.drawTestPattern(PATTERN_STRIPE_0);
     22f2:	62 e0       	ldi	r22, 0x02	; 2
-    22f4:	8f e9       	ldi	r24, 0x9F	; 159
+    22f4:	89 e8       	ldi	r24, 0x89	; 137
     22f6:	91 e0       	ldi	r25, 0x01	; 1
     22f8:	0e 94 f5 08 	call	0x11ea	; 0x11ea <_ZN3DMD15drawTestPatternEh>
     22fc:	2f ef       	ldi	r18, 0xFF	; 255
@@ -4547,7 +4547,7 @@ static void handler_display_test_pattern()
 	_delay_ms(1000);
 	dmd.drawTestPattern(PATTERN_STRIPE_1);
     230e:	63 e0       	ldi	r22, 0x03	; 3
-    2310:	8f e9       	ldi	r24, 0x9F	; 159
+    2310:	89 e8       	ldi	r24, 0x89	; 137
     2312:	91 e0       	ldi	r25, 0x01	; 1
     2314:	0e 94 f5 08 	call	0x11ea	; 0x11ea <_ZN3DMD15drawTestPatternEh>
     2318:	2f ef       	ldi	r18, 0xFF	; 255
@@ -4562,7 +4562,7 @@ static void handler_display_test_pattern()
 	_delay_ms(1000);
 	dmd.drawTestPattern(PATTERN_ALT_0);
     232a:	60 e0       	ldi	r22, 0x00	; 0
-    232c:	8f e9       	ldi	r24, 0x9F	; 159
+    232c:	89 e8       	ldi	r24, 0x89	; 137
     232e:	91 e0       	ldi	r25, 0x01	; 1
     2330:	0e 94 f5 08 	call	0x11ea	; 0x11ea <_ZN3DMD15drawTestPatternEh>
     2334:	2f ef       	ldi	r18, 0xFF	; 255
@@ -4577,7 +4577,7 @@ static void handler_display_test_pattern()
 	_delay_ms(1000);
 	dmd.drawTestPattern(PATTERN_ALT_1);
     2346:	61 e0       	ldi	r22, 0x01	; 1
-    2348:	8f e9       	ldi	r24, 0x9F	; 159
+    2348:	89 e8       	ldi	r24, 0x89	; 137
     234a:	91 e0       	ldi	r25, 0x01	; 1
     234c:	0e 94 f5 08 	call	0x11ea	; 0x11ea <_ZN3DMD15drawTestPatternEh>
     2350:	2f ef       	ldi	r18, 0xFF	; 255
@@ -4596,13 +4596,13 @@ static void handler_display_test_numbers()
 {
 	dmd.clearScreen(true);
     2362:	61 e0       	ldi	r22, 0x01	; 1
-    2364:	8f e9       	ldi	r24, 0x9F	; 159
+    2364:	89 e8       	ldi	r24, 0x89	; 137
     2366:	91 e0       	ldi	r25, 0x01	; 1
     2368:	0e 94 98 07 	call	0xf30	; 0xf30 <_ZN3DMD11clearScreenEh>
 	dmd.selectFont(Arial_14);
     236c:	68 eb       	ldi	r22, 0xB8	; 184
     236e:	78 e0       	ldi	r23, 0x08	; 8
-    2370:	8f e9       	ldi	r24, 0x9F	; 159
+    2370:	89 e8       	ldi	r24, 0x89	; 137
     2372:	91 e0       	ldi	r25, 0x01	; 1
     2374:	0e 94 7b 0a 	call	0x14f6	; 0x14f6 <_ZN3DMD10selectFontEPKh>
 	for (char i = '0'; i < '9'; i++)
@@ -4615,7 +4615,7 @@ static void handler_display_test_numbers()
     2380:	50 e0       	ldi	r21, 0x00	; 0
     2382:	60 e0       	ldi	r22, 0x00	; 0
     2384:	70 e0       	ldi	r23, 0x00	; 0
-    2386:	8f e9       	ldi	r24, 0x9F	; 159
+    2386:	89 e8       	ldi	r24, 0x89	; 137
     2388:	91 e0       	ldi	r25, 0x01	; 1
     238a:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 
@@ -4634,7 +4634,7 @@ static void handler_display_test_numbers()
 	handler_display_test_numbers();
 	dmd.clearScreen(true);
     2394:	61 e0       	ldi	r22, 0x01	; 1
-    2396:	8f e9       	ldi	r24, 0x9F	; 159
+    2396:	89 e8       	ldi	r24, 0x89	; 137
     2398:	91 e0       	ldi	r25, 0x01	; 1
     239a:	0e 94 98 07 	call	0xf30	; 0xf30 <_ZN3DMD11clearScreenEh>
 }
@@ -4649,14 +4649,14 @@ static void handler_display_test_numbers()
 void handler_display_match_winner()
 {
 	if (ttgame.left_team->match_score == MATCH_DUOS_MIN_SCORE &&
-    23a4:	e0 91 81 01 	lds	r30, 0x0181	; 0x800181 <ttgame+0x4>
-    23a8:	f0 91 82 01 	lds	r31, 0x0182	; 0x800182 <ttgame+0x5>
+    23a4:	e0 91 e2 02 	lds	r30, 0x02E2	; 0x8002e2 <ttgame+0x4>
+    23a8:	f0 91 e3 02 	lds	r31, 0x02E3	; 0x8002e3 <ttgame+0x5>
     23ac:	80 81       	ld	r24, Z
     23ae:	8a 30       	cpi	r24, 0x0A	; 10
     23b0:	61 f4       	brne	.+24     	; 0x23ca <_Z28handler_display_match_winnerv+0x26>
 		ttgame.right_team->match_score == MATCH_DUOS_MIN_SCORE)
-    23b2:	a0 91 83 01 	lds	r26, 0x0183	; 0x800183 <ttgame+0x6>
-    23b6:	b0 91 84 01 	lds	r27, 0x0184	; 0x800184 <ttgame+0x7>
+    23b2:	a0 91 e4 02 	lds	r26, 0x02E4	; 0x8002e4 <ttgame+0x6>
+    23b6:	b0 91 e5 02 	lds	r27, 0x02E5	; 0x8002e5 <ttgame+0x7>
 	}
 }
 
@@ -4671,20 +4671,20 @@ void handler_display_match_winner()
 	{
 		ttgame.match_state = MATCH_DEUCE;
     23c2:	81 e0       	ldi	r24, 0x01	; 1
-    23c4:	80 93 80 01 	sts	0x0180, r24	; 0x800180 <ttgame+0x3>
+    23c4:	80 93 e1 02 	sts	0x02E1, r24	; 0x8002e1 <ttgame+0x3>
     23c8:	04 c0       	rjmp	.+8      	; 0x23d2 <_Z28handler_display_match_winnerv+0x2e>
 	}
 
 	if (ttgame.match_state == MATCH_DEUCE)
-    23ca:	90 91 80 01 	lds	r25, 0x0180	; 0x800180 <ttgame+0x3>
+    23ca:	90 91 e1 02 	lds	r25, 0x02E1	; 0x8002e1 <ttgame+0x3>
     23ce:	91 30       	cpi	r25, 0x01	; 1
     23d0:	d1 f5       	brne	.+116    	; 0x2446 <_Z28handler_display_match_winnerv+0xa2>
 	{
 		if (ttgame.left_team->match_score >= (ttgame.right_team->match_score + MATCH_WIN_DUOS_SCORE))
     23d2:	20 81       	ld	r18, Z
     23d4:	30 e0       	ldi	r19, 0x00	; 0
-    23d6:	a0 91 83 01 	lds	r26, 0x0183	; 0x800183 <ttgame+0x6>
-    23da:	b0 91 84 01 	lds	r27, 0x0184	; 0x800184 <ttgame+0x7>
+    23d6:	a0 91 e4 02 	lds	r26, 0x02E4	; 0x8002e4 <ttgame+0x6>
+    23da:	b0 91 e5 02 	lds	r27, 0x02E5	; 0x8002e5 <ttgame+0x7>
     23de:	8c 91       	ld	r24, X
     23e0:	90 e0       	ldi	r25, 0x00	; 0
     23e2:	02 96       	adiw	r24, 0x02	; 2
@@ -4697,16 +4697,16 @@ void handler_display_match_winner()
     23ec:	8f 5f       	subi	r24, 0xFF	; 255
     23ee:	81 83       	std	Z+1, r24	; 0x01
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
-    23f0:	ed e7       	ldi	r30, 0x7D	; 125
-    23f2:	f1 e0       	ldi	r31, 0x01	; 1
+    23f0:	ee ed       	ldi	r30, 0xDE	; 222
+    23f2:	f2 e0       	ldi	r31, 0x02	; 2
     23f4:	10 86       	std	Z+8, r1	; 0x08
 			ttgame.match_state = MATCH_FINISHED;
     23f6:	82 e0       	ldi	r24, 0x02	; 2
     23f8:	83 83       	std	Z+3, r24	; 0x03
 		}
 		if (ttgame.right_team->match_score >= (ttgame.left_team->match_score + MATCH_WIN_DUOS_SCORE))
-    23fa:	ad e7       	ldi	r26, 0x7D	; 125
-    23fc:	b1 e0       	ldi	r27, 0x01	; 1
+    23fa:	ae ed       	ldi	r26, 0xDE	; 222
+    23fc:	b2 e0       	ldi	r27, 0x02	; 2
     23fe:	16 96       	adiw	r26, 0x06	; 6
     2400:	ed 91       	ld	r30, X+
     2402:	fc 91       	ld	r31, X
@@ -4729,8 +4729,8 @@ void handler_display_match_winner()
     2420:	8f 5f       	subi	r24, 0xFF	; 255
     2422:	81 83       	std	Z+1, r24	; 0x01
 			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
-    2424:	ed e7       	ldi	r30, 0x7D	; 125
-    2426:	f1 e0       	ldi	r31, 0x01	; 1
+    2424:	ee ed       	ldi	r30, 0xDE	; 222
+    2426:	f2 e0       	ldi	r31, 0x02	; 2
     2428:	81 e0       	ldi	r24, 0x01	; 1
     242a:	80 87       	std	Z+8, r24	; 0x08
 			ttgame.match_state = MATCH_FINISHED;
@@ -4740,16 +4740,16 @@ void handler_display_match_winner()
 		
 		// toggle service side
 		if (ttgame.service_side == PLAYER_SIDE_LEFT)
-    2430:	80 91 7f 01 	lds	r24, 0x017F	; 0x80017f <ttgame+0x2>
+    2430:	80 91 e0 02 	lds	r24, 0x02E0	; 0x8002e0 <ttgame+0x2>
     2434:	81 11       	cpse	r24, r1
     2436:	04 c0       	rjmp	.+8      	; 0x2440 <_Z28handler_display_match_winnerv+0x9c>
 			ttgame.service_side = PLAYER_SIDE_RIGHT;
     2438:	81 e0       	ldi	r24, 0x01	; 1
-    243a:	80 93 7f 01 	sts	0x017F, r24	; 0x80017f <ttgame+0x2>
+    243a:	80 93 e0 02 	sts	0x02E0, r24	; 0x8002e0 <ttgame+0x2>
     243e:	08 95       	ret
 		else
 			ttgame.service_side = PLAYER_SIDE_LEFT;
-    2440:	10 92 7f 01 	sts	0x017F, r1	; 0x80017f <ttgame+0x2>
+    2440:	10 92 e0 02 	sts	0x02E0, r1	; 0x8002e0 <ttgame+0x2>
     2444:	08 95       	ret
 	}
 	else // before DEUCE
@@ -4763,16 +4763,16 @@ void handler_display_match_winner()
     244c:	8f 5f       	subi	r24, 0xFF	; 255
     244e:	81 83       	std	Z+1, r24	; 0x01
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
-    2450:	ed e7       	ldi	r30, 0x7D	; 125
-    2452:	f1 e0       	ldi	r31, 0x01	; 1
+    2450:	ee ed       	ldi	r30, 0xDE	; 222
+    2452:	f2 e0       	ldi	r31, 0x02	; 2
     2454:	10 86       	std	Z+8, r1	; 0x08
 			ttgame.match_state = MATCH_FINISHED;
     2456:	82 e0       	ldi	r24, 0x02	; 2
     2458:	83 83       	std	Z+3, r24	; 0x03
 		}
 		if (ttgame.right_team->match_score >= MATCH_WIN_MIN_SCORE)
-    245a:	e0 91 83 01 	lds	r30, 0x0183	; 0x800183 <ttgame+0x6>
-    245e:	f0 91 84 01 	lds	r31, 0x0184	; 0x800184 <ttgame+0x7>
+    245a:	e0 91 e4 02 	lds	r30, 0x02E4	; 0x8002e4 <ttgame+0x6>
+    245e:	f0 91 e5 02 	lds	r31, 0x02E5	; 0x8002e5 <ttgame+0x7>
     2462:	80 81       	ld	r24, Z
     2464:	8b 30       	cpi	r24, 0x0B	; 11
     2466:	48 f0       	brcs	.+18     	; 0x247a <_Z28handler_display_match_winnerv+0xd6>
@@ -4782,8 +4782,8 @@ void handler_display_match_winner()
     246a:	8f 5f       	subi	r24, 0xFF	; 255
     246c:	81 83       	std	Z+1, r24	; 0x01
 			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
-    246e:	ed e7       	ldi	r30, 0x7D	; 125
-    2470:	f1 e0       	ldi	r31, 0x01	; 1
+    246e:	ee ed       	ldi	r30, 0xDE	; 222
+    2470:	f2 e0       	ldi	r31, 0x02	; 2
     2472:	81 e0       	ldi	r24, 0x01	; 1
     2474:	80 87       	std	Z+8, r24	; 0x08
 			ttgame.match_state = MATCH_FINISHED;
@@ -4793,8 +4793,8 @@ void handler_display_match_winner()
 		
 		// toggle service side
 		if (((ttgame.left_team->match_score + ttgame.right_team->match_score) % 2) == 0)
-    247a:	ed e7       	ldi	r30, 0x7D	; 125
-    247c:	f1 e0       	ldi	r31, 0x01	; 1
+    247a:	ee ed       	ldi	r30, 0xDE	; 222
+    247c:	f2 e0       	ldi	r31, 0x02	; 2
     247e:	a4 81       	ldd	r26, Z+4	; 0x04
     2480:	b5 81       	ldd	r27, Z+5	; 0x05
     2482:	9c 91       	ld	r25, X
@@ -4807,16 +4807,16 @@ void handler_display_match_winner()
     2490:	10 c0       	rjmp	.+32     	; 0x24b2 <_Z28handler_display_match_winnerv+0x10e>
 		{
 			if (ttgame.service_side == PLAYER_SIDE_LEFT)
-    2492:	80 91 7f 01 	lds	r24, 0x017F	; 0x80017f <ttgame+0x2>
+    2492:	80 91 e0 02 	lds	r24, 0x02E0	; 0x8002e0 <ttgame+0x2>
     2496:	81 11       	cpse	r24, r1
     2498:	04 c0       	rjmp	.+8      	; 0x24a2 <_Z28handler_display_match_winnerv+0xfe>
 				ttgame.service_side = PLAYER_SIDE_RIGHT;
     249a:	81 e0       	ldi	r24, 0x01	; 1
-    249c:	80 93 7f 01 	sts	0x017F, r24	; 0x80017f <ttgame+0x2>
+    249c:	80 93 e0 02 	sts	0x02E0, r24	; 0x8002e0 <ttgame+0x2>
     24a0:	08 95       	ret
 			else
 				ttgame.service_side = PLAYER_SIDE_LEFT;
-    24a2:	10 92 7f 01 	sts	0x017F, r1	; 0x80017f <ttgame+0x2>
+    24a2:	10 92 e0 02 	sts	0x02E0, r1	; 0x8002e0 <ttgame+0x2>
 		}
 	}
 }
@@ -4827,7 +4827,7 @@ void handler_display_match_winner()
 	}
 
 	if (ttgame.match_state == MATCH_DEUCE)
-    24a8:	80 91 80 01 	lds	r24, 0x0180	; 0x800180 <ttgame+0x3>
+    24a8:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <ttgame+0x3>
     24ac:	81 30       	cpi	r24, 0x01	; 1
     24ae:	a9 f6       	brne	.-86     	; 0x245a <_Z28handler_display_match_winnerv+0xb6>
     24b0:	90 cf       	rjmp	.-224    	; 0x23d2 <_Z28handler_display_match_winnerv+0x2e>
@@ -4847,7 +4847,7 @@ void handler_display_manager()
     24bc:	cf 93       	push	r28
     24be:	df 93       	push	r29
 	switch (ttgame.app_mode)
-    24c0:	80 91 7d 01 	lds	r24, 0x017D	; 0x80017d <ttgame>
+    24c0:	80 91 de 02 	lds	r24, 0x02DE	; 0x8002de <ttgame>
     24c4:	81 30       	cpi	r24, 0x01	; 1
     24c6:	09 f4       	brne	.+2      	; 0x24ca <_Z23handler_display_managerv+0x16>
     24c8:	67 c0       	rjmp	.+206    	; 0x2598 <_Z23handler_display_managerv+0xe4>
@@ -4859,19 +4859,19 @@ void handler_display_manager()
 	{
 		case APP_MODE_TITTLE:
 			if (ttgame.display_state == DISPLAY_INIT)
-    24d4:	80 91 7e 01 	lds	r24, 0x017E	; 0x80017e <ttgame+0x1>
+    24d4:	80 91 df 02 	lds	r24, 0x02DF	; 0x8002df <ttgame+0x1>
     24d8:	81 11       	cpse	r24, r1
     24da:	2e c0       	rjmp	.+92     	; 0x2538 <_Z23handler_display_managerv+0x84>
 			{
 				dmd.clearScreen(true);
     24dc:	61 e0       	ldi	r22, 0x01	; 1
-    24de:	8f e9       	ldi	r24, 0x9F	; 159
+    24de:	89 e8       	ldi	r24, 0x89	; 137
     24e0:	91 e0       	ldi	r25, 0x01	; 1
     24e2:	0e 94 98 07 	call	0xf30	; 0xf30 <_ZN3DMD11clearScreenEh>
 				dmd.selectFont(Arial_Black_16);
     24e6:	68 e6       	ldi	r22, 0x68	; 104
     24e8:	70 e0       	ldi	r23, 0x00	; 0
-    24ea:	8f e9       	ldi	r24, 0x9F	; 159
+    24ea:	89 e8       	ldi	r24, 0x89	; 137
     24ec:	91 e0       	ldi	r25, 0x01	; 1
     24ee:	0e 94 7b 0a 	call	0x14f6	; 0x14f6 <_ZN3DMD10selectFontEPKh>
 				dmd.drawMarquee(tittle_text, strlen(tittle_text), DMD_PIXELS_ACROSS - 1, 0);
@@ -4890,13 +4890,13 @@ void handler_display_manager()
     250a:	30 e0       	ldi	r19, 0x00	; 0
     250c:	60 e0       	ldi	r22, 0x00	; 0
     250e:	71 e0       	ldi	r23, 0x01	; 1
-    2510:	8f e9       	ldi	r24, 0x9F	; 159
+    2510:	89 e8       	ldi	r24, 0x89	; 137
     2512:	91 e0       	ldi	r25, 0x01	; 1
     2514:	0e 94 12 0d 	call	0x1a24	; 0x1a24 <_ZN3DMD11drawMarqueeEPKchii>
 				ttgame.digit_update_timer = TITTLE_SCROLL_TIME_MS + Millis;
     2518:	0e 94 27 0f 	call	0x1e4e	; 0x1e4e <_Z6millisv>
-    251c:	ed e7       	ldi	r30, 0x7D	; 125
-    251e:	f1 e0       	ldi	r31, 0x01	; 1
+    251c:	ee ed       	ldi	r30, 0xDE	; 222
+    251e:	f2 e0       	ldi	r31, 0x02	; 2
     2520:	dc 01       	movw	r26, r24
     2522:	cb 01       	movw	r24, r22
     2524:	4e 96       	adiw	r24, 0x1e	; 30
@@ -4918,10 +4918,10 @@ void handler_display_manager()
 			{
 				if (Millis > ttgame.digit_update_timer)
     253e:	0e 94 27 0f 	call	0x1e4e	; 0x1e4e <_Z6millisv>
-    2542:	00 91 87 01 	lds	r16, 0x0187	; 0x800187 <ttgame+0xa>
-    2546:	10 91 88 01 	lds	r17, 0x0188	; 0x800188 <ttgame+0xb>
-    254a:	20 91 89 01 	lds	r18, 0x0189	; 0x800189 <ttgame+0xc>
-    254e:	30 91 8a 01 	lds	r19, 0x018A	; 0x80018a <ttgame+0xd>
+    2542:	00 91 e8 02 	lds	r16, 0x02E8	; 0x8002e8 <ttgame+0xa>
+    2546:	10 91 e9 02 	lds	r17, 0x02E9	; 0x8002e9 <ttgame+0xb>
+    254a:	20 91 ea 02 	lds	r18, 0x02EA	; 0x8002ea <ttgame+0xc>
+    254e:	30 91 eb 02 	lds	r19, 0x02EB	; 0x8002eb <ttgame+0xd>
     2552:	06 17       	cp	r16, r22
     2554:	17 07       	cpc	r17, r23
     2556:	28 07       	cpc	r18, r24
@@ -4934,13 +4934,13 @@ void handler_display_manager()
     2560:	50 e0       	ldi	r21, 0x00	; 0
     2562:	6f ef       	ldi	r22, 0xFF	; 255
     2564:	7f ef       	ldi	r23, 0xFF	; 255
-    2566:	8f e9       	ldi	r24, 0x9F	; 159
+    2566:	89 e8       	ldi	r24, 0x89	; 137
     2568:	91 e0       	ldi	r25, 0x01	; 1
     256a:	0e 94 8b 0d 	call	0x1b16	; 0x1b16 <_ZN3DMD11stepMarqueeEii>
     256e:	88 23       	and	r24, r24
     2570:	19 f0       	breq	.+6      	; 0x2578 <_Z23handler_display_managerv+0xc4>
 					ttgame.display_state = DISPLAY_INIT;
-    2572:	10 92 7e 01 	sts	0x017E, r1	; 0x80017e <ttgame+0x1>
+    2572:	10 92 df 02 	sts	0x02DF, r1	; 0x8002df <ttgame+0x1>
     2576:	c3 c1       	rjmp	.+902    	; 0x28fe <_Z23handler_display_managerv+0x44a>
 					else
 					ttgame.digit_update_timer = TITTLE_SCROLL_TIME_MS + Millis;
@@ -4950,10 +4950,10 @@ void handler_display_manager()
     2580:	4e 96       	adiw	r24, 0x1e	; 30
     2582:	a1 1d       	adc	r26, r1
     2584:	b1 1d       	adc	r27, r1
-    2586:	80 93 87 01 	sts	0x0187, r24	; 0x800187 <ttgame+0xa>
-    258a:	90 93 88 01 	sts	0x0188, r25	; 0x800188 <ttgame+0xb>
-    258e:	a0 93 89 01 	sts	0x0189, r26	; 0x800189 <ttgame+0xc>
-    2592:	b0 93 8a 01 	sts	0x018A, r27	; 0x80018a <ttgame+0xd>
+    2586:	80 93 e8 02 	sts	0x02E8, r24	; 0x8002e8 <ttgame+0xa>
+    258a:	90 93 e9 02 	sts	0x02E9, r25	; 0x8002e9 <ttgame+0xb>
+    258e:	a0 93 ea 02 	sts	0x02EA, r26	; 0x8002ea <ttgame+0xc>
+    2592:	b0 93 eb 02 	sts	0x02EB, r27	; 0x8002eb <ttgame+0xd>
     2596:	b3 c1       	rjmp	.+870    	; 0x28fe <_Z23handler_display_managerv+0x44a>
 				}
 			}
@@ -4961,19 +4961,19 @@ void handler_display_manager()
 
 		case APP_MODE_MATCH:
 			if (ttgame.display_state == DISPLAY_INIT)
-    2598:	80 91 7e 01 	lds	r24, 0x017E	; 0x80017e <ttgame+0x1>
+    2598:	80 91 df 02 	lds	r24, 0x02DF	; 0x8002df <ttgame+0x1>
     259c:	81 11       	cpse	r24, r1
     259e:	21 c0       	rjmp	.+66     	; 0x25e2 <_Z23handler_display_managerv+0x12e>
 			{
 				dmd.clearScreen(true);
     25a0:	61 e0       	ldi	r22, 0x01	; 1
-    25a2:	8f e9       	ldi	r24, 0x9F	; 159
+    25a2:	89 e8       	ldi	r24, 0x89	; 137
     25a4:	91 e0       	ldi	r25, 0x01	; 1
     25a6:	0e 94 98 07 	call	0xf30	; 0xf30 <_ZN3DMD11clearScreenEh>
 				dmd.selectFont(System5x7);
     25aa:	62 ed       	ldi	r22, 0xD2	; 210
     25ac:	76 e0       	ldi	r23, 0x06	; 6
-    25ae:	8f e9       	ldi	r24, 0x9F	; 159
+    25ae:	89 e8       	ldi	r24, 0x89	; 137
     25b0:	91 e0       	ldi	r25, 0x01	; 1
     25b2:	0e 94 7b 0a 	call	0x14f6	; 0x14f6 <_ZN3DMD10selectFontEPKh>
 				dmd.drawLine((DMD_PIXELS_ACROSS / 2) - 1, 0, (DMD_PIXELS_ACROSS / 2) - 1, DMD_PIXELS_DOWN - 1, GRAPHICS_NORMAL);
@@ -4986,12 +4986,12 @@ void handler_display_manager()
     25c2:	50 e0       	ldi	r21, 0x00	; 0
     25c4:	6f e0       	ldi	r22, 0x0F	; 15
     25c6:	70 e0       	ldi	r23, 0x00	; 0
-    25c8:	8f e9       	ldi	r24, 0x9F	; 159
+    25c8:	89 e8       	ldi	r24, 0x89	; 137
     25ca:	91 e0       	ldi	r25, 0x01	; 1
     25cc:	0e 94 0d 08 	call	0x101a	; 0x101a <_ZN3DMD8drawLineEiiiih>
 				ttgame.digit_update_timer = 0;
-    25d0:	ed e7       	ldi	r30, 0x7D	; 125
-    25d2:	f1 e0       	ldi	r31, 0x01	; 1
+    25d0:	ee ed       	ldi	r30, 0xDE	; 222
+    25d2:	f2 e0       	ldi	r31, 0x02	; 2
     25d4:	12 86       	std	Z+10, r1	; 0x0a
     25d6:	13 86       	std	Z+11, r1	; 0x0b
     25d8:	14 86       	std	Z+12, r1	; 0x0c
@@ -5008,10 +5008,10 @@ void handler_display_manager()
 			{
 				if (Millis > ttgame.digit_update_timer)
     25e8:	0e 94 27 0f 	call	0x1e4e	; 0x1e4e <_Z6millisv>
-    25ec:	00 91 87 01 	lds	r16, 0x0187	; 0x800187 <ttgame+0xa>
-    25f0:	10 91 88 01 	lds	r17, 0x0188	; 0x800188 <ttgame+0xb>
-    25f4:	20 91 89 01 	lds	r18, 0x0189	; 0x800189 <ttgame+0xc>
-    25f8:	30 91 8a 01 	lds	r19, 0x018A	; 0x80018a <ttgame+0xd>
+    25ec:	00 91 e8 02 	lds	r16, 0x02E8	; 0x8002e8 <ttgame+0xa>
+    25f0:	10 91 e9 02 	lds	r17, 0x02E9	; 0x8002e9 <ttgame+0xb>
+    25f4:	20 91 ea 02 	lds	r18, 0x02EA	; 0x8002ea <ttgame+0xc>
+    25f8:	30 91 eb 02 	lds	r19, 0x02EB	; 0x8002eb <ttgame+0xd>
     25fc:	06 17       	cp	r16, r22
     25fe:	17 07       	cpc	r17, r23
     2600:	28 07       	cpc	r18, r24
@@ -5023,20 +5023,20 @@ void handler_display_manager()
 					
 					//flash the winner score
 					if (ttgame.match_state == MATCH_FINISHED)
-    2608:	80 91 80 01 	lds	r24, 0x0180	; 0x800180 <ttgame+0x3>
+    2608:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <ttgame+0x3>
     260c:	82 30       	cpi	r24, 0x02	; 2
     260e:	b9 f5       	brne	.+110    	; 0x267e <_Z23handler_display_managerv+0x1ca>
 					{
 						ttgame.flash_winner_state = !ttgame.flash_winner_state;
-    2610:	80 91 86 01 	lds	r24, 0x0186	; 0x800186 <ttgame+0x9>
+    2610:	80 91 e7 02 	lds	r24, 0x02E7	; 0x8002e7 <ttgame+0x9>
     2614:	91 e0       	ldi	r25, 0x01	; 1
     2616:	81 11       	cpse	r24, r1
     2618:	90 e0       	ldi	r25, 0x00	; 0
-    261a:	90 93 86 01 	sts	0x0186, r25	; 0x800186 <ttgame+0x9>
+    261a:	90 93 e7 02 	sts	0x02E7, r25	; 0x8002e7 <ttgame+0x9>
 						if (ttgame.flash_winner_state && ttgame.match_winner_side == PLAYER_SIDE_LEFT)
     261e:	81 11       	cpse	r24, r1
     2620:	2e c0       	rjmp	.+92     	; 0x267e <_Z23handler_display_managerv+0x1ca>
-    2622:	80 91 85 01 	lds	r24, 0x0185	; 0x800185 <ttgame+0x8>
+    2622:	80 91 e6 02 	lds	r24, 0x02E6	; 0x8002e6 <ttgame+0x8>
     2626:	81 11       	cpse	r24, r1
     2628:	14 c0       	rjmp	.+40     	; 0x2652 <_Z23handler_display_managerv+0x19e>
 						{
@@ -5047,7 +5047,7 @@ void handler_display_manager()
     2630:	50 e0       	ldi	r21, 0x00	; 0
     2632:	61 e0       	ldi	r22, 0x01	; 1
     2634:	70 e0       	ldi	r23, 0x00	; 0
-    2636:	8f e9       	ldi	r24, 0x9F	; 159
+    2636:	89 e8       	ldi	r24, 0x89	; 137
     2638:	91 e0       	ldi	r25, 0x01	; 1
     263a:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 							dmd.drawChar(7, 9, ' ', GRAPHICS_NORMAL);
@@ -5056,7 +5056,7 @@ void handler_display_manager()
     2642:	50 e0       	ldi	r21, 0x00	; 0
     2644:	67 e0       	ldi	r22, 0x07	; 7
     2646:	70 e0       	ldi	r23, 0x00	; 0
-    2648:	8f e9       	ldi	r24, 0x9F	; 159
+    2648:	89 e8       	ldi	r24, 0x89	; 137
     264a:	91 e0       	ldi	r25, 0x01	; 1
     264c:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 							need_to_update_score = false;
@@ -5073,7 +5073,7 @@ void handler_display_manager()
     265c:	50 e0       	ldi	r21, 0x00	; 0
     265e:	63 e1       	ldi	r22, 0x13	; 19
     2660:	70 e0       	ldi	r23, 0x00	; 0
-    2662:	8f e9       	ldi	r24, 0x9F	; 159
+    2662:	89 e8       	ldi	r24, 0x89	; 137
     2664:	91 e0       	ldi	r25, 0x01	; 1
     2666:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 							dmd.drawChar(25, 9, ' ', GRAPHICS_NORMAL);
@@ -5082,7 +5082,7 @@ void handler_display_manager()
     266e:	50 e0       	ldi	r21, 0x00	; 0
     2670:	69 e1       	ldi	r22, 0x19	; 25
     2672:	70 e0       	ldi	r23, 0x00	; 0
-    2674:	8f e9       	ldi	r24, 0x9F	; 159
+    2674:	89 e8       	ldi	r24, 0x89	; 137
     2676:	91 e0       	ldi	r25, 0x01	; 1
     2678:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
     267c:	5d c0       	rjmp	.+186    	; 0x2738 <_Z23handler_display_managerv+0x284>
@@ -5092,8 +5092,8 @@ void handler_display_manager()
 							ttgame.right_team->series_score,
 							ttgame.left_team->match_score,
 							ttgame.right_team->match_score
-    267e:	ed e7       	ldi	r30, 0x7D	; 125
-    2680:	f1 e0       	ldi	r31, 0x01	; 1
+    267e:	ee ed       	ldi	r30, 0xDE	; 222
+    2680:	f2 e0       	ldi	r31, 0x02	; 2
     2682:	a6 81       	ldd	r26, Z+6	; 0x06
     2684:	b7 81       	ldd	r27, Z+7	; 0x07
 					if (need_to_update_score)
@@ -5124,7 +5124,7 @@ void handler_display_manager()
     26a8:	91 e0       	ldi	r25, 0x01	; 1
     26aa:	9f 93       	push	r25
     26ac:	8f 93       	push	r24
-    26ae:	cf e8       	ldi	r28, 0x8F	; 143
+    26ae:	c9 e7       	ldi	r28, 0x79	; 121
     26b0:	d1 e0       	ldi	r29, 0x01	; 1
     26b2:	df 93       	push	r29
     26b4:	cf 93       	push	r28
@@ -5136,7 +5136,7 @@ void handler_display_manager()
     26c0:	50 e0       	ldi	r21, 0x00	; 0
     26c2:	64 e0       	ldi	r22, 0x04	; 4
     26c4:	70 e0       	ldi	r23, 0x00	; 0
-    26c6:	8f e9       	ldi	r24, 0x9F	; 159
+    26c6:	89 e8       	ldi	r24, 0x89	; 137
     26c8:	91 e0       	ldi	r25, 0x01	; 1
     26ca:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 						dmd.drawChar(22, 0, digit_buffer[4], GRAPHICS_NORMAL);
@@ -5145,7 +5145,7 @@ void handler_display_manager()
     26d2:	50 e0       	ldi	r21, 0x00	; 0
     26d4:	66 e1       	ldi	r22, 0x16	; 22
     26d6:	70 e0       	ldi	r23, 0x00	; 0
-    26d8:	8f e9       	ldi	r24, 0x9F	; 159
+    26d8:	89 e8       	ldi	r24, 0x89	; 137
     26da:	91 e0       	ldi	r25, 0x01	; 1
     26dc:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 						dmd.drawChar(1, 9, digit_buffer[6], GRAPHICS_NORMAL);
@@ -5154,7 +5154,7 @@ void handler_display_manager()
     26e4:	50 e0       	ldi	r21, 0x00	; 0
     26e6:	61 e0       	ldi	r22, 0x01	; 1
     26e8:	70 e0       	ldi	r23, 0x00	; 0
-    26ea:	8f e9       	ldi	r24, 0x9F	; 159
+    26ea:	89 e8       	ldi	r24, 0x89	; 137
     26ec:	91 e0       	ldi	r25, 0x01	; 1
     26ee:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 						dmd.drawChar(7, 9, digit_buffer[7], GRAPHICS_NORMAL);
@@ -5163,7 +5163,7 @@ void handler_display_manager()
     26f6:	50 e0       	ldi	r21, 0x00	; 0
     26f8:	67 e0       	ldi	r22, 0x07	; 7
     26fa:	70 e0       	ldi	r23, 0x00	; 0
-    26fc:	8f e9       	ldi	r24, 0x9F	; 159
+    26fc:	89 e8       	ldi	r24, 0x89	; 137
     26fe:	91 e0       	ldi	r25, 0x01	; 1
     2700:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 						dmd.drawChar(19, 9, digit_buffer[9], GRAPHICS_NORMAL);
@@ -5172,7 +5172,7 @@ void handler_display_manager()
     2708:	50 e0       	ldi	r21, 0x00	; 0
     270a:	63 e1       	ldi	r22, 0x13	; 19
     270c:	70 e0       	ldi	r23, 0x00	; 0
-    270e:	8f e9       	ldi	r24, 0x9F	; 159
+    270e:	89 e8       	ldi	r24, 0x89	; 137
     2710:	91 e0       	ldi	r25, 0x01	; 1
     2712:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 						dmd.drawChar(25, 9, digit_buffer[10], GRAPHICS_NORMAL);
@@ -5181,7 +5181,7 @@ void handler_display_manager()
     271a:	50 e0       	ldi	r21, 0x00	; 0
     271c:	69 e1       	ldi	r22, 0x19	; 25
     271e:	70 e0       	ldi	r23, 0x00	; 0
-    2720:	8f e9       	ldi	r24, 0x9F	; 159
+    2720:	89 e8       	ldi	r24, 0x89	; 137
     2722:	91 e0       	ldi	r25, 0x01	; 1
     2724:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
     2728:	8d b7       	in	r24, 0x3d	; 61
@@ -5196,7 +5196,7 @@ void handler_display_manager()
 					
 					//service side icon display
 					if (ttgame.service_side == PLAYER_SIDE_LEFT)
-    2738:	80 91 7f 01 	lds	r24, 0x017F	; 0x80017f <ttgame+0x2>
+    2738:	80 91 e0 02 	lds	r24, 0x02E0	; 0x8002e0 <ttgame+0x2>
     273c:	81 11       	cpse	r24, r1
     273e:	1b c0       	rjmp	.+54     	; 0x2776 <_Z23handler_display_managerv+0x2c2>
 					{
@@ -5212,7 +5212,7 @@ void handler_display_manager()
     2750:	50 e0       	ldi	r21, 0x00	; 0
     2752:	6e e1       	ldi	r22, 0x1E	; 30
     2754:	70 e0       	ldi	r23, 0x00	; 0
-    2756:	8f e9       	ldi	r24, 0x9F	; 159
+    2756:	89 e8       	ldi	r24, 0x89	; 137
     2758:	91 e0       	ldi	r25, 0x01	; 1
     275a:	0e 94 c3 08 	call	0x1186	; 0x1186 <_ZN3DMD13drawFilledBoxEiiiih>
 						dmd.drawFilledBox(0, 0, 1, 1, GRAPHICS_NORMAL);
@@ -5223,7 +5223,7 @@ void handler_display_manager()
     2766:	50 e0       	ldi	r21, 0x00	; 0
     2768:	60 e0       	ldi	r22, 0x00	; 0
     276a:	70 e0       	ldi	r23, 0x00	; 0
-    276c:	8f e9       	ldi	r24, 0x9F	; 159
+    276c:	89 e8       	ldi	r24, 0x89	; 137
     276e:	91 e0       	ldi	r25, 0x01	; 1
     2770:	0e 94 c3 08 	call	0x1186	; 0x1186 <_ZN3DMD13drawFilledBoxEiiiih>
     2774:	1a c0       	rjmp	.+52     	; 0x27aa <_Z23handler_display_managerv+0x2f6>
@@ -5242,7 +5242,7 @@ void handler_display_manager()
     2786:	50 e0       	ldi	r21, 0x00	; 0
     2788:	60 e0       	ldi	r22, 0x00	; 0
     278a:	70 e0       	ldi	r23, 0x00	; 0
-    278c:	8f e9       	ldi	r24, 0x9F	; 159
+    278c:	89 e8       	ldi	r24, 0x89	; 137
     278e:	91 e0       	ldi	r25, 0x01	; 1
     2790:	0e 94 c3 08 	call	0x1186	; 0x1186 <_ZN3DMD13drawFilledBoxEiiiih>
 						dmd.drawFilledBox(DMD_PIXELS_ACROSS - 2, 0, DMD_PIXELS_ACROSS - 1, 1, GRAPHICS_NORMAL);						
@@ -5253,7 +5253,7 @@ void handler_display_manager()
     279c:	50 e0       	ldi	r21, 0x00	; 0
     279e:	6e e1       	ldi	r22, 0x1E	; 30
     27a0:	70 e0       	ldi	r23, 0x00	; 0
-    27a2:	8f e9       	ldi	r24, 0x9F	; 159
+    27a2:	89 e8       	ldi	r24, 0x89	; 137
     27a4:	91 e0       	ldi	r25, 0x01	; 1
     27a6:	0e 94 c3 08 	call	0x1186	; 0x1186 <_ZN3DMD13drawFilledBoxEiiiih>
 					}
@@ -5265,10 +5265,10 @@ void handler_display_manager()
     27b4:	9f 4f       	sbci	r25, 0xFF	; 255
     27b6:	af 4f       	sbci	r26, 0xFF	; 255
     27b8:	bf 4f       	sbci	r27, 0xFF	; 255
-    27ba:	80 93 87 01 	sts	0x0187, r24	; 0x800187 <ttgame+0xa>
-    27be:	90 93 88 01 	sts	0x0188, r25	; 0x800188 <ttgame+0xb>
-    27c2:	a0 93 89 01 	sts	0x0189, r26	; 0x800189 <ttgame+0xc>
-    27c6:	b0 93 8a 01 	sts	0x018A, r27	; 0x80018a <ttgame+0xd>
+    27ba:	80 93 e8 02 	sts	0x02E8, r24	; 0x8002e8 <ttgame+0xa>
+    27be:	90 93 e9 02 	sts	0x02E9, r25	; 0x8002e9 <ttgame+0xb>
+    27c2:	a0 93 ea 02 	sts	0x02EA, r26	; 0x8002ea <ttgame+0xc>
+    27c6:	b0 93 eb 02 	sts	0x02EB, r27	; 0x8002eb <ttgame+0xd>
     27ca:	99 c0       	rjmp	.+306    	; 0x28fe <_Z23handler_display_managerv+0x44a>
 				}
 			}
@@ -5276,24 +5276,24 @@ void handler_display_manager()
 		
 		case APP_MODE_TIMER:
 			if (ttgame.display_state == DISPLAY_INIT)
-    27cc:	80 91 7e 01 	lds	r24, 0x017E	; 0x80017e <ttgame+0x1>
+    27cc:	80 91 df 02 	lds	r24, 0x02DF	; 0x8002df <ttgame+0x1>
     27d0:	81 11       	cpse	r24, r1
     27d2:	14 c0       	rjmp	.+40     	; 0x27fc <_Z23handler_display_managerv+0x348>
 			{
 				dmd.clearScreen(true);
     27d4:	61 e0       	ldi	r22, 0x01	; 1
-    27d6:	8f e9       	ldi	r24, 0x9F	; 159
+    27d6:	89 e8       	ldi	r24, 0x89	; 137
     27d8:	91 e0       	ldi	r25, 0x01	; 1
     27da:	0e 94 98 07 	call	0xf30	; 0xf30 <_ZN3DMD11clearScreenEh>
 				dmd.selectFont(Arial_14);
     27de:	68 eb       	ldi	r22, 0xB8	; 184
     27e0:	78 e0       	ldi	r23, 0x08	; 8
-    27e2:	8f e9       	ldi	r24, 0x9F	; 159
+    27e2:	89 e8       	ldi	r24, 0x89	; 137
     27e4:	91 e0       	ldi	r25, 0x01	; 1
     27e6:	0e 94 7b 0a 	call	0x14f6	; 0x14f6 <_ZN3DMD10selectFontEPKh>
 				ttgame.digit_update_timer = 0;
-    27ea:	ed e7       	ldi	r30, 0x7D	; 125
-    27ec:	f1 e0       	ldi	r31, 0x01	; 1
+    27ea:	ee ed       	ldi	r30, 0xDE	; 222
+    27ec:	f2 e0       	ldi	r31, 0x02	; 2
     27ee:	12 86       	std	Z+10, r1	; 0x0a
     27f0:	13 86       	std	Z+11, r1	; 0x0b
     27f2:	14 86       	std	Z+12, r1	; 0x0c
@@ -5310,10 +5310,10 @@ void handler_display_manager()
 			{
 				if (Millis > ttgame.digit_update_timer)
     2802:	0e 94 27 0f 	call	0x1e4e	; 0x1e4e <_Z6millisv>
-    2806:	00 91 87 01 	lds	r16, 0x0187	; 0x800187 <ttgame+0xa>
-    280a:	10 91 88 01 	lds	r17, 0x0188	; 0x800188 <ttgame+0xb>
-    280e:	20 91 89 01 	lds	r18, 0x0189	; 0x800189 <ttgame+0xc>
-    2812:	30 91 8a 01 	lds	r19, 0x018A	; 0x80018a <ttgame+0xd>
+    2806:	00 91 e8 02 	lds	r16, 0x02E8	; 0x8002e8 <ttgame+0xa>
+    280a:	10 91 e9 02 	lds	r17, 0x02E9	; 0x8002e9 <ttgame+0xb>
+    280e:	20 91 ea 02 	lds	r18, 0x02EA	; 0x8002ea <ttgame+0xc>
+    2812:	30 91 eb 02 	lds	r19, 0x02EB	; 0x8002eb <ttgame+0xd>
     2816:	06 17       	cp	r16, r22
     2818:	17 07       	cpc	r17, r23
     281a:	28 07       	cpc	r18, r24
@@ -5323,7 +5323,7 @@ void handler_display_manager()
 				{
 					sprintf(digit_buffer, "%02u:%02u", softrtc.minute, softrtc.second);
     2822:	0f 2e       	mov	r0, r31
-    2824:	f6 e7       	ldi	r31, 0x76	; 118
+    2824:	fe e6       	ldi	r31, 0x6E	; 110
     2826:	ef 2e       	mov	r14, r31
     2828:	f1 e0       	ldi	r31, 0x01	; 1
     282a:	ff 2e       	mov	r15, r31
@@ -5339,7 +5339,7 @@ void handler_display_manager()
     283e:	91 e0       	ldi	r25, 0x01	; 1
     2840:	9f 93       	push	r25
     2842:	8f 93       	push	r24
-    2844:	cf e8       	ldi	r28, 0x8F	; 143
+    2844:	c9 e7       	ldi	r28, 0x79	; 121
     2846:	d1 e0       	ldi	r29, 0x01	; 1
     2848:	df 93       	push	r29
     284a:	cf 93       	push	r28
@@ -5351,7 +5351,7 @@ void handler_display_manager()
     2856:	50 e0       	ldi	r21, 0x00	; 0
     2858:	61 e0       	ldi	r22, 0x01	; 1
     285a:	70 e0       	ldi	r23, 0x00	; 0
-    285c:	8f e9       	ldi	r24, 0x9F	; 159
+    285c:	89 e8       	ldi	r24, 0x89	; 137
     285e:	91 e0       	ldi	r25, 0x01	; 1
     2860:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 					dmd.drawChar(8, 2, digit_buffer[1], GRAPHICS_NORMAL);
@@ -5360,7 +5360,7 @@ void handler_display_manager()
     2868:	50 e0       	ldi	r21, 0x00	; 0
     286a:	68 e0       	ldi	r22, 0x08	; 8
     286c:	70 e0       	ldi	r23, 0x00	; 0
-    286e:	8f e9       	ldi	r24, 0x9F	; 159
+    286e:	89 e8       	ldi	r24, 0x89	; 137
     2870:	91 e0       	ldi	r25, 0x01	; 1
     2872:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 					dmd.drawChar(17, 2, digit_buffer[3], GRAPHICS_NORMAL);
@@ -5369,7 +5369,7 @@ void handler_display_manager()
     287a:	50 e0       	ldi	r21, 0x00	; 0
     287c:	61 e1       	ldi	r22, 0x11	; 17
     287e:	70 e0       	ldi	r23, 0x00	; 0
-    2880:	8f e9       	ldi	r24, 0x9F	; 159
+    2880:	89 e8       	ldi	r24, 0x89	; 137
     2882:	91 e0       	ldi	r25, 0x01	; 1
     2884:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 					dmd.drawChar(24, 2, digit_buffer[4], GRAPHICS_NORMAL);
@@ -5378,7 +5378,7 @@ void handler_display_manager()
     288c:	50 e0       	ldi	r21, 0x00	; 0
     288e:	68 e1       	ldi	r22, 0x18	; 24
     2890:	70 e0       	ldi	r23, 0x00	; 0
-    2892:	8f e9       	ldi	r24, 0x9F	; 159
+    2892:	89 e8       	ldi	r24, 0x89	; 137
     2894:	91 e0       	ldi	r25, 0x01	; 1
     2896:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 					if (softrtc.colon_on)
@@ -5402,7 +5402,7 @@ void handler_display_manager()
     28ba:	50 e0       	ldi	r21, 0x00	; 0
     28bc:	6f e0       	ldi	r22, 0x0F	; 15
     28be:	70 e0       	ldi	r23, 0x00	; 0
-    28c0:	8f e9       	ldi	r24, 0x9F	; 159
+    28c0:	89 e8       	ldi	r24, 0x89	; 137
     28c2:	91 e0       	ldi	r25, 0x01	; 1
     28c4:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
     28c8:	0a c0       	rjmp	.+20     	; 0x28de <_Z23handler_display_managerv+0x42a>
@@ -5414,7 +5414,7 @@ void handler_display_manager()
     28d0:	50 e0       	ldi	r21, 0x00	; 0
     28d2:	6f e0       	ldi	r22, 0x0F	; 15
     28d4:	70 e0       	ldi	r23, 0x00	; 0
-    28d6:	8f e9       	ldi	r24, 0x9F	; 159
+    28d6:	89 e8       	ldi	r24, 0x89	; 137
     28d8:	91 e0       	ldi	r25, 0x01	; 1
     28da:	0e 94 b6 0a 	call	0x156c	; 0x156c <_ZN3DMD8drawCharEiihh>
 					ttgame.digit_update_timer = CLOCK_UPDATE_TIME_MS + Millis;
@@ -5425,10 +5425,10 @@ void handler_display_manager()
     28e8:	9e 4f       	sbci	r25, 0xFE	; 254
     28ea:	af 4f       	sbci	r26, 0xFF	; 255
     28ec:	bf 4f       	sbci	r27, 0xFF	; 255
-    28ee:	80 93 87 01 	sts	0x0187, r24	; 0x800187 <ttgame+0xa>
-    28f2:	90 93 88 01 	sts	0x0188, r25	; 0x800188 <ttgame+0xb>
-    28f6:	a0 93 89 01 	sts	0x0189, r26	; 0x800189 <ttgame+0xc>
-    28fa:	b0 93 8a 01 	sts	0x018A, r27	; 0x80018a <ttgame+0xd>
+    28ee:	80 93 e8 02 	sts	0x02E8, r24	; 0x8002e8 <ttgame+0xa>
+    28f2:	90 93 e9 02 	sts	0x02E9, r25	; 0x8002e9 <ttgame+0xb>
+    28f6:	a0 93 ea 02 	sts	0x02EA, r26	; 0x8002ea <ttgame+0xc>
+    28fa:	b0 93 eb 02 	sts	0x02EB, r27	; 0x8002eb <ttgame+0xd>
 				}
 			}
 			break;
@@ -5469,7 +5469,7 @@ ISR(DMD_SCAN_ISR_VECT)
 static void handler_display_scan_isr()
 {
 	dmd.scanDisplayBySPI();
-    292e:	8f e9       	ldi	r24, 0x9F	; 159
+    292e:	89 e8       	ldi	r24, 0x89	; 137
     2930:	91 e0       	ldi	r25, 0x01	; 1
     2932:	0e 94 d7 09 	call	0x13ae	; 0x13ae <_ZN3DMD16scanDisplayBySPIEv>
 }
@@ -5496,15 +5496,15 @@ ISR(DMD_SCAN_ISR_VECT)
     2956:	18 95       	reti
 
 00002958 <_GLOBAL__sub_I_ttgame>:
-#include "Arial_black_16.h"
-#include "Typedefs.h"
-#include "Handler_Button.h"
 #include "Handler_Display.h"
+
+tt_game_t ttgame;
+char tittle_text[] = "ReliSource TT Score Board, Powered by Firmware Team!";
 
 static DMD dmd(1, 1);
     2958:	41 e0       	ldi	r20, 0x01	; 1
     295a:	61 e0       	ldi	r22, 0x01	; 1
-    295c:	8f e9       	ldi	r24, 0x9F	; 159
+    295c:	89 e8       	ldi	r24, 0x89	; 137
     295e:	91 e0       	ldi	r25, 0x01	; 1
     2960:	0e 94 b4 07 	call	0xf68	; 0xf68 <_ZN3DMDC1Ehh>
     2964:	08 95       	ret
