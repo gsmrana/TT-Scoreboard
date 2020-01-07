@@ -53,19 +53,17 @@ DMD::DMD(byte panelsWide, byte panelsHigh)
     row1 = DisplaysTotal<<4;
     row2 = DisplaysTotal<<5;
     row3 = ((DisplaysTotal<<2)*3)<<2;
+	bDMDByte = 0;
 	
-	// dont't need this, we are using static allocation
+	// don't need this, we are using static allocation
     //bDMDScreenRAM = (byte*)malloc(DisplaysTotal*DMD_RAM_SIZE_BYTES);
-	
-	bDMDByte = 0; // init the scan line/ram pointer to the required start point
-	
+		
     // initialize the SPI port
+	DMD_IO__INIT();
     SPI.setBitOrder(MSBFIRST);
     SPI.setDataMode(SPI_MODE0);				// CPOL=0, CPHA=0
     SPI.setClockDivider(SPI_CLOCK_DIV2);	// If using a short cable, can put SPI_CLOCK_DIV2 here for 2x faster updates
 	SPI.begin();
-
-    DMD_IO__INIT();
     clearScreen(true);   
 }
 

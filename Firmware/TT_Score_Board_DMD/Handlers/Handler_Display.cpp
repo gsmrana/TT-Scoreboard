@@ -40,8 +40,10 @@ void handler_display_init()
 	DMD_SCAN_ISR__Init();	
 	_delay_ms(1000);
 	
+	// enable this line to test the DMD pixels
 	//handler_display_test_pixel_by_column();
-	//handler_display_test_pixel_by_row()
+	//handler_display_test_pixel_by_row();
+	
 	handler_display_test_pattern();
 	handler_display_test_numbers();
 	dmd.clearScreen(true);

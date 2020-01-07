@@ -5,7 +5,7 @@
   *
   * low_fuses:		0xFF
   * high_fuses:		0xDF
-  * extended_fuses:	0xFF
+  * extended_fuses:	0xFC
   *
   * MCU Clock: 16MHz crystal
   *

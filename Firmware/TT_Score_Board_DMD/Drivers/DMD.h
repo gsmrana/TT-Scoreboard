@@ -64,7 +64,7 @@ typedef bool boolean;
 #define PIN_DMD_R_DATA    _BV(PINB3)	// D11_MOSI is SPI Master Out if SPI is used
 //Define this chip select pin that the Ethernet W5100 IC or other SPI device uses
 //if it is in use during a DMD scan request then scanDisplayBySPI() will exit without conflict! (and skip that scan)
-#define PIN_OTHER_SPI_nCS _BV(PINB2)	// D10_SS pull-up for master mode
+#define PIN_OTHER_SPI_nCS _BV(PINB2)	// D10_SS output for SPI master mode, HIGH LOW is optional
 // ######################################################################################################################
 // ######################################################################################################################
 
@@ -72,6 +72,7 @@ typedef bool boolean;
 #define DMD_IO__INIT()			\
 ({								\
 	PORTB |= PIN_OTHER_SPI_nCS;	\
+	DDRB |= PIN_OTHER_SPI_nCS;	\
 	PORTB |= PIN_DMD_R_DATA;	\
 	DDRC |= PIN_DMD_A;			\
 	DDRC |= PIN_DMD_B;			\
