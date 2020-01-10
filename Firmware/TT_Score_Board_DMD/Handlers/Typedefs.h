@@ -11,7 +11,7 @@
 
 #include "DriverIO.h"
 
-#define FIRMWARE_VERSION			100
+#define FIRMWARE_VERSION			101
 
 #define MATCH_WIN_MIN_SCORE			11
 #define MATCH_DEUCE_MIN_SCORE		10
