@@ -14,6 +14,7 @@
  */ 
 
 #include <avr/io.h>
+#include <util/delay.h>
 #include "DriverIO.h"
 #include "Handler_Button.h"
 #include "Handler_Display.h"
@@ -21,9 +22,17 @@
 int main(void)
 {
     DriverIO_Init();
-    DebugLog(tittle_text);	
+    DebugLog(tittle_text);
+	handler_button_init();
     handler_display_init();
-    handler_button_init();
+	
+	// check for press and hold button down
+	handler_button_check_on_startup();
+	
+	// startup display pixel test
+	handler_display_test_pattern();
+	handler_display_test_numbers();
+	handler_display_clear();
 	
     while (1) 
     {

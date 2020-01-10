@@ -67,6 +67,7 @@ extern volatile softrtc_t softrtc;
 extern volatile remote_input_t remote;
 
 void handler_button_init();
+void handler_button_check_on_startup();
 void handler_button_mannager();
 
 #endif /* HANDLER_BUTTON_H_ */

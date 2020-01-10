@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 #include "Typedefs.h"
 #include "DriverIO.h"
 #include "Handler_Button.h"
@@ -24,6 +25,27 @@ static void handler_button_long_press();
 void handler_button_init()
 {
 	Button_GPIO_ISR__Init();	
+}
+
+void handler_button_check_on_startup()
+{
+	if(!REMOTE_VT_IO_PIN)
+		return;
+	
+	// set the display brightness based on button press
+	if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_C)
+	{
+		handler_display_set_brightness(50);		
+	}
+	else if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_D)
+	{
+		handler_display_set_brightness(75);
+	}
+	
+	_delay_ms(1000);
+	remote.button_press_backup = BUTTON_CLEAR;
+	remote.button_short_press = BUTTON_CLEAR;
+	remote.button_long_press = BUTTON_CLEAR;
 }
 
 static void handler_softrtc_update_isr()
@@ -96,8 +118,7 @@ static void handler_button_short_press()
 			handler_display_match_winner();
 		}
 	}
-
-	if (remote.button_short_press & REMOTE_BUTTON_B)
+	else if (remote.button_short_press & REMOTE_BUTTON_B)
 	{
 		remote.button_short_press &= ~REMOTE_BUTTON_B;	
 		DebugLog("Short Press: B");
@@ -108,8 +129,7 @@ static void handler_button_short_press()
 			handler_display_match_winner();
 		}
 	}
-	
-	if (remote.button_short_press & REMOTE_BUTTON_C)
+	else if (remote.button_short_press & REMOTE_BUTTON_C)
 	{
 		remote.button_short_press &= ~REMOTE_BUTTON_C;	
 		DebugLog("Short Press: C");
@@ -126,8 +146,7 @@ static void handler_button_short_press()
 		ttgame.match_winner_side = PLAYER_SIDE_NONE;
 		ttgame.match_state = MATCH_RUNNING;
 	}
-	
-	if (remote.button_short_press & REMOTE_BUTTON_D)
+	else if (remote.button_short_press & REMOTE_BUTTON_D)
 	{
 		remote.button_short_press &= ~REMOTE_BUTTON_D;	
 		DebugLog("Short Press: D");
@@ -147,7 +166,31 @@ static void handler_button_short_press()
 
 static void handler_button_long_press()
 {
-	if (remote.button_long_press & REMOTE_BUTTON_C)
+	if (remote.button_long_press & REMOTE_BUTTON_A)
+	{
+		remote.button_long_press &= ~REMOTE_BUTTON_A;
+		DebugLog("Long Press: A");
+		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED && 
+			ttgame.left_team->match_score > 0)
+		{
+			// left team score decrement
+			ttgame.left_team->match_score--;
+			handler_display_match_winner();
+		}
+	}
+	else if (remote.button_long_press & REMOTE_BUTTON_B)
+	{
+		remote.button_long_press &= ~REMOTE_BUTTON_B;
+		DebugLog("Long Press: B");
+		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED && 
+			ttgame.right_team->match_score > 0)
+		{
+			// right team score decrement
+			ttgame.right_team->match_score--;
+			handler_display_match_winner();
+		}		
+	}
+	else if (remote.button_long_press & REMOTE_BUTTON_C)
 	{
 		remote.button_long_press &= ~REMOTE_BUTTON_C;	
 		DebugLog("Long Press: C");
@@ -162,9 +205,8 @@ static void handler_button_long_press()
 		ttgame.service_side = PLAYER_SIDE_LEFT;
 		ttgame.match_winner_side = PLAYER_SIDE_NONE;
 		ttgame.match_state = MATCH_RUNNING;
-	}
-	
-	if (remote.button_long_press & REMOTE_BUTTON_D)
+	}	
+	else if (remote.button_long_press & REMOTE_BUTTON_D)
 	{
 		remote.button_long_press &= ~REMOTE_BUTTON_D;
 		DebugLog("Long Press: D");		

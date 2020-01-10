@@ -27,26 +27,25 @@ static tt_team_t team_a;
 static tt_team_t team_b;
 
 static void handler_display_scan_isr();
-static void handler_display_test_pixel_by_column();
-static void handler_display_test_pixel_by_row();
-static void handler_display_test_pattern();
-static void handler_display_test_numbers();
 
 void handler_display_init()
 {
 	ttgame.left_team = &team_a;
 	ttgame.right_team = &team_b;
 	dmd.clearScreen(false);
-	DMD_SCAN_ISR__Init();	
+	DMD_SCAN_ISR__Init();
 	_delay_ms(1000);
-	
-	// enable this line to test the DMD pixels
-	//handler_display_test_pixel_by_column();
-	//handler_display_test_pixel_by_row();
-	
-	handler_display_test_pattern();
-	handler_display_test_numbers();
-	dmd.clearScreen(true);
+}
+
+void handler_display_clear()
+{
+	dmd.clearScreen(true); 
+}
+
+void handler_display_set_brightness(uint8_t percent)
+{
+	DMD_BRIGHTNESS_PWM__Init();
+	DMD_OE_PWM_SET_DUTYCYCLE(percent);
 }
 
 static void handler_display_scan_isr()
@@ -54,7 +53,7 @@ static void handler_display_scan_isr()
 	dmd.scanDisplayBySPI();
 }
 
-static void handler_display_test_pixel_by_column()
+void handler_display_test_pixel_by_column()
 {
 	dmd.clearScreen(true);
 	for (uint8_t x = 0; x < DMD_PIXELS_ACROSS; x++)
@@ -68,7 +67,7 @@ static void handler_display_test_pixel_by_column()
 	}
 }
 
-static void handler_display_test_pixel_by_row()
+void handler_display_test_pixel_by_row()
 {
 	dmd.clearScreen(true);
 	for (uint8_t y = 0; y < DMD_PIXELS_DOWN; y++)
@@ -82,7 +81,7 @@ static void handler_display_test_pixel_by_row()
 	}
 }
 
-static void handler_display_test_pattern()
+void handler_display_test_pattern()
 {
 	dmd.drawTestPattern(PATTERN_STRIPE_0);
 	_delay_ms(1000);
@@ -94,7 +93,7 @@ static void handler_display_test_pattern()
 	_delay_ms(1000);
 }
 
-static void handler_display_test_numbers()
+void handler_display_test_numbers()
 {
 	dmd.clearScreen(true);
 	dmd.selectFont(Arial_14);
@@ -106,21 +105,22 @@ static void handler_display_test_numbers()
 
 void handler_display_match_winner()
 {
-	if (ttgame.left_team->match_score == MATCH_DUOS_MIN_SCORE &&
-		ttgame.right_team->match_score == MATCH_DUOS_MIN_SCORE)
+	if (ttgame.left_team->match_score == MATCH_DEUCE_MIN_SCORE &&
+		ttgame.right_team->match_score == MATCH_DEUCE_MIN_SCORE)
 	{
 		ttgame.match_state = MATCH_DEUCE;
 	}
 
 	if (ttgame.match_state == MATCH_DEUCE)
 	{
-		if (ttgame.left_team->match_score >= (ttgame.right_team->match_score + MATCH_WIN_DUOS_SCORE))
+		if (ttgame.left_team->match_score >= (ttgame.right_team->match_score + MATCH_WIN_DEUCE_SCORE))
 		{
 			ttgame.left_team->series_score++;
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
 			ttgame.match_state = MATCH_FINISHED;
 		}
-		if (ttgame.right_team->match_score >= (ttgame.left_team->match_score + MATCH_WIN_DUOS_SCORE))
+		
+		if (ttgame.right_team->match_score >= (ttgame.left_team->match_score + MATCH_WIN_DEUCE_SCORE))
 		{
 			ttgame.right_team->series_score++;
 			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
@@ -141,6 +141,7 @@ void handler_display_match_winner()
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
 			ttgame.match_state = MATCH_FINISHED;
 		}
+		
 		if (ttgame.right_team->match_score >= MATCH_WIN_MIN_SCORE)
 		{
 			ttgame.right_team->series_score++;
@@ -193,6 +194,7 @@ void handler_display_manager()
 				ttgame.digit_update_timer = 0;
 				ttgame.display_state = DISPLAY_UPDATE;
 			}
+			
 			if (ttgame.display_state == DISPLAY_UPDATE)
 			{
 				if (Millis > ttgame.digit_update_timer)
@@ -258,6 +260,7 @@ void handler_display_manager()
 				ttgame.digit_update_timer = 0;
 				ttgame.display_state = DISPLAY_UPDATE;
 			}
+			
 			if (ttgame.display_state == DISPLAY_UPDATE)
 			{
 				if (Millis > ttgame.digit_update_timer)

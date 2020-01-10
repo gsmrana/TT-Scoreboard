@@ -11,10 +11,11 @@
 
 #include "DriverIO.h"
 
+#define FIRMWARE_VERSION			100
 
 #define MATCH_WIN_MIN_SCORE			11
-#define MATCH_DUOS_MIN_SCORE		10
-#define MATCH_WIN_DUOS_SCORE		2
+#define MATCH_DEUCE_MIN_SCORE		10
+#define MATCH_WIN_DEUCE_SCORE		2
 
 
 enum _match_state

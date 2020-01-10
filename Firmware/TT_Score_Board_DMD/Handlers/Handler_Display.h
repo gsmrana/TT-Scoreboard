@@ -31,6 +31,20 @@
 	TCCR2B = _BV(CS22)|_BV(CS21)|_BV(CS20);	\
 })
 
+// set Timer1 OC1A PWM with pre-scaler 64
+#define DMD_BRIGHTNESS_PWM__Init()			\
+({											\
+	TCCR1A = _BV(COM1A1)|_BV(WGM10);		\
+	OCR1A  = 0xFF;							\
+	TCCR1B = _BV(CS11)|_BV(CS10);			\
+})
+
+// set Timer1 OC1A duty cycle
+#define DMD_OE_PWM_SET_DUTYCYCLE(p)			\
+({											\
+	OCR1A = (p*255)/100;					\
+})
+
 enum _app_mode
 {
 	APP_MODE_TITTLE,
@@ -49,6 +63,12 @@ extern char tittle_text[];
 extern tt_game_t ttgame;
 
 void handler_display_init();
+void handler_display_clear();
+void handler_display_set_brightness(uint8_t percent);
+void handler_display_test_pixel_by_column();
+void handler_display_test_pixel_by_row();
+void handler_display_test_pattern();
+void handler_display_test_numbers();
 void handler_display_match_winner();
 void handler_display_manager();
 
