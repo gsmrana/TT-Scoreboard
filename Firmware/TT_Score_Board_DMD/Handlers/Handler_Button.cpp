@@ -35,11 +35,11 @@ void handler_button_check_on_startup()
 	// set the display brightness based on button press
 	if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_C)
 	{
-		handler_display_set_brightness(50);		
+		handler_display_set_brightness(30);		
 	}
 	else if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_D)
 	{
-		handler_display_set_brightness(75);
+		handler_display_set_brightness(50);
 	}
 	
 	_delay_ms(1000);
@@ -115,7 +115,7 @@ static void handler_button_short_press()
 		{
 			// left team score increment
 			ttgame.left_team->match_score++;			
-			handler_display_match_winner();
+			handler_display_update_match_state();
 		}
 	}
 	else if (remote.button_short_press & REMOTE_BUTTON_B)
@@ -126,7 +126,7 @@ static void handler_button_short_press()
 		{
 			// right team score increment
 			ttgame.right_team->match_score++;
-			handler_display_match_winner();
+			handler_display_update_match_state();
 		}
 	}
 	else if (remote.button_short_press & REMOTE_BUTTON_C)
@@ -134,17 +134,15 @@ static void handler_button_short_press()
 		remote.button_short_press &= ~REMOTE_BUTTON_C;	
 		DebugLog("Short Press: C");
 		
-		// clear match score
+		// start new match
 		ttgame.left_team->match_score = 0;
 		ttgame.right_team->match_score = 0;
-		softrtc.minute = 0;
-		softrtc.second = 0;
-		if(((ttgame.left_team->series_score + ttgame.right_team->series_score) % 2) == 0)
-			ttgame.service_side = PLAYER_SIDE_LEFT;
-		else 
-			ttgame.service_side = PLAYER_SIDE_RIGHT;
+		ttgame.initial_service_side = !ttgame.initial_service_side;
+		ttgame.current_service_side = ttgame.initial_service_side;
 		ttgame.match_winner_side = PLAYER_SIDE_NONE;
 		ttgame.match_state = MATCH_RUNNING;
+		softrtc.minute = 0;
+		softrtc.second = 0;
 	}
 	else if (remote.button_short_press & REMOTE_BUTTON_D)
 	{
@@ -175,7 +173,7 @@ static void handler_button_long_press()
 		{
 			// left team score decrement
 			ttgame.left_team->match_score--;
-			handler_display_match_winner();
+			handler_display_update_match_state();
 		}
 	}
 	else if (remote.button_long_press & REMOTE_BUTTON_B)
@@ -187,7 +185,7 @@ static void handler_button_long_press()
 		{
 			// right team score decrement
 			ttgame.right_team->match_score--;
-			handler_display_match_winner();
+			handler_display_update_match_state();
 		}		
 	}
 	else if (remote.button_long_press & REMOTE_BUTTON_C)
@@ -200,11 +198,12 @@ static void handler_button_long_press()
 		ttgame.right_team->match_score = 0;
 		ttgame.left_team->series_score = 0;
 		ttgame.right_team->series_score = 0;
-		softrtc.minute = 0;
-		softrtc.second = 0;
-		ttgame.service_side = PLAYER_SIDE_LEFT;
+		ttgame.initial_service_side = PLAYER_SIDE_LEFT;
+		ttgame.current_service_side = ttgame.initial_service_side;
 		ttgame.match_winner_side = PLAYER_SIDE_NONE;
 		ttgame.match_state = MATCH_RUNNING;
+		softrtc.minute = 0;
+		softrtc.second = 0;
 	}	
 	else if (remote.button_long_press & REMOTE_BUTTON_D)
 	{
@@ -212,10 +211,8 @@ static void handler_button_long_press()
 		DebugLog("Long Press: D");		
 		
 		// toggle team side
-		if(ttgame.service_side == PLAYER_SIDE_LEFT)
-			ttgame.service_side = PLAYER_SIDE_RIGHT;
-		else if(ttgame.service_side == PLAYER_SIDE_RIGHT)
-			ttgame.service_side = PLAYER_SIDE_LEFT;			
+		ttgame.initial_service_side = !ttgame.initial_service_side;				
+		ttgame.current_service_side = !ttgame.current_service_side;			
 		
 		tt_team_t *tt_team_ptr = ttgame.left_team;
 		ttgame.left_team = ttgame.right_team;

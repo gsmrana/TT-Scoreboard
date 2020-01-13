@@ -103,14 +103,18 @@ void handler_display_test_numbers()
 	}
 }
 
-void handler_display_match_winner()
+void handler_display_update_match_state()
 {
-	if (ttgame.left_team->match_score == MATCH_DEUCE_MIN_SCORE &&
-		ttgame.right_team->match_score == MATCH_DEUCE_MIN_SCORE)
+	if (ttgame.left_team->match_score >= MATCH_DEUCE_MIN_SCORE &&
+		ttgame.right_team->match_score >= MATCH_DEUCE_MIN_SCORE)
 	{
 		ttgame.match_state = MATCH_DEUCE;
 	}
-
+	else
+	{
+		ttgame.match_state = MATCH_RUNNING;
+	}
+	
 	if (ttgame.match_state == MATCH_DEUCE)
 	{
 		if (ttgame.left_team->match_score >= (ttgame.right_team->match_score + MATCH_WIN_DEUCE_SCORE))
@@ -118,20 +122,16 @@ void handler_display_match_winner()
 			ttgame.left_team->series_score++;
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
 			ttgame.match_state = MATCH_FINISHED;
-		}
-		
-		if (ttgame.right_team->match_score >= (ttgame.left_team->match_score + MATCH_WIN_DEUCE_SCORE))
+		}		
+		else if (ttgame.right_team->match_score >= (ttgame.left_team->match_score + MATCH_WIN_DEUCE_SCORE))
 		{
 			ttgame.right_team->series_score++;
 			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
 			ttgame.match_state = MATCH_FINISHED;
 		}
 		
-		// toggle service side
-		if (ttgame.service_side == PLAYER_SIDE_LEFT)
-			ttgame.service_side = PLAYER_SIDE_RIGHT;
-		else
-			ttgame.service_side = PLAYER_SIDE_LEFT;
+		// toggle service side on each score change
+		ttgame.current_service_side = (ttgame.initial_service_side + ttgame.left_team->match_score + ttgame.right_team->match_score) % PLAYER_SIDE_COUNT;
 	}
 	else // before DEUCE
 	{
@@ -140,23 +140,16 @@ void handler_display_match_winner()
 			ttgame.left_team->series_score++;
 			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
 			ttgame.match_state = MATCH_FINISHED;
-		}
-		
-		if (ttgame.right_team->match_score >= MATCH_WIN_MIN_SCORE)
+		}		
+		else if (ttgame.right_team->match_score >= MATCH_WIN_MIN_SCORE)
 		{
 			ttgame.right_team->series_score++;
 			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
 			ttgame.match_state = MATCH_FINISHED;
 		}
 		
-		// toggle service side
-		if (((ttgame.left_team->match_score + ttgame.right_team->match_score) % 2) == 0)
-		{
-			if (ttgame.service_side == PLAYER_SIDE_LEFT)
-				ttgame.service_side = PLAYER_SIDE_RIGHT;
-			else
-				ttgame.service_side = PLAYER_SIDE_LEFT;
-		}
+		// toggle service side on every two score
+		ttgame.current_service_side = (ttgame.initial_service_side + ((ttgame.left_team->match_score + ttgame.right_team->match_score) / 2)) % PLAYER_SIDE_COUNT;
 	}
 }
 
@@ -237,7 +230,7 @@ void handler_display_manager()
 					}
 					
 					//service side icon display
-					if (ttgame.service_side == PLAYER_SIDE_LEFT)
+					if (ttgame.current_service_side == PLAYER_SIDE_LEFT)
 					{
 						dmd.drawFilledBox(DMD_PIXELS_ACROSS - 2, 0, DMD_PIXELS_ACROSS - 1, 1, GRAPHICS_NOR);
 						dmd.drawFilledBox(0, 0, 1, 1, GRAPHICS_NORMAL);

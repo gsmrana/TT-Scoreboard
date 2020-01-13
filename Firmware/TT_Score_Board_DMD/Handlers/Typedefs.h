@@ -27,9 +27,10 @@ enum _match_state
 
 enum _player_side
 {
-	PLAYER_SIDE_LEFT,
-	PLAYER_SIDE_RIGHT,
-	PLAYER_SIDE_NONE
+	PLAYER_SIDE_LEFT = 0,
+	PLAYER_SIDE_RIGHT = 1,
+	PLAYER_SIDE_COUNT = 2,
+	PLAYER_SIDE_NONE = 0xFF
 };
 
 typedef struct _tt_team
@@ -42,10 +43,11 @@ typedef struct _tt_game
 {
 	uint8_t app_mode;
 	uint8_t display_state;
-	uint8_t service_side;
-	uint8_t match_state;
 	tt_team_t *left_team;
 	tt_team_t *right_team;
+	uint8_t match_state;
+	uint8_t initial_service_side;
+	uint8_t current_service_side;	
 	uint8_t match_winner_side;
 	uint8_t flash_winner_state;
 	Timer_t digit_update_timer;

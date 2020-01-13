@@ -31,7 +31,7 @@
 	TCCR2B = _BV(CS22)|_BV(CS21)|_BV(CS20);	\
 })
 
-// set Timer1 OC1A PWM with pre-scaler 64
+// set Timer1 OC1A PWM with pre-scaler 64, 490Hz
 #define DMD_BRIGHTNESS_PWM__Init()			\
 ({											\
 	TCCR1A = _BV(COM1A1)|_BV(WGM10);		\
@@ -69,7 +69,7 @@ void handler_display_test_pixel_by_column();
 void handler_display_test_pixel_by_row();
 void handler_display_test_pattern();
 void handler_display_test_numbers();
-void handler_display_match_winner();
+void handler_display_update_match_state();
 void handler_display_manager();
 
 #endif /* HANDLER_DISPLAY_H_ */
