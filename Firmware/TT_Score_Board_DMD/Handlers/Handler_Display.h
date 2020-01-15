@@ -32,17 +32,11 @@
 })
 
 // set Timer1 OC1A PWM with pre-scaler 64, 490Hz
-#define DMD_BRIGHTNESS_PWM__Init()			\
-({											\
-	TCCR1A = _BV(COM1A1)|_BV(WGM10);		\
-	OCR1A  = 0xFF;							\
-	TCCR1B = _BV(CS11)|_BV(CS10);			\
-})
-
-// set Timer1 OC1A duty cycle
-#define DMD_OE_PWM_SET_DUTYCYCLE(p)			\
+#define DMD_BRIGHTNESS_PWM__Init(p)			\
 ({											\
 	OCR1A = (p*255)/100;					\
+	TCCR1A = _BV(COM1A1)|_BV(WGM10);		\
+	TCCR1B = _BV(CS11)|_BV(CS10);			\
 })
 
 enum _app_mode

@@ -55,7 +55,9 @@ typedef bool boolean;
 // ######################################################################################################################
 // ######################################################################################################################
 //#warning CHANGE THESE TO SEMI-ADJUSTABLE PIN DEFS!
-//Arduino pins used for the display connection
+//MCU pins used for the display connection
+#define DMD_BRIGHTNESS_CONTROL_ENABLE
+
 #define PIN_DMD_nOE       _BV(PINB1)	// D9 active low Output Enable, setting this low lights all the LEDs in the selected rows. Can pwm it at very high frequency for brightness control.
 #define PIN_DMD_A         _BV(PINC3)	// A3
 #define PIN_DMD_B         _BV(PINC4)	// A4
@@ -88,8 +90,14 @@ typedef bool boolean;
 #define LIGHT_DMD_ROW_03_07_11_15()       { PORTC |=  PIN_DMD_B;	PORTC &= ~PIN_DMD_A; }
 #define LIGHT_DMD_ROW_04_08_12_16()       { PORTC |=  PIN_DMD_B;	PORTC |=  PIN_DMD_A; }
 #define LATCH_DMD_SHIFT_REG_TO_OUTPUT()   { PORTC |=  PIN_DMD_SCLK; PORTC &= ~PIN_DMD_SCLK; }
-#define OE_DMD_ROWS_OFF()                 { PORTB &= ~PIN_DMD_nOE; }
-#define OE_DMD_ROWS_ON()                  { PORTB |=  PIN_DMD_nOE; }
+	
+#ifdef DMD_BRIGHTNESS_CONTROL_ENABLE
+	#define OE_DMD_ROWS_OFF()                 { TCCR1A &= ~_BV(COM1A1); PORTB &= ~PIN_DMD_nOE; }
+	#define OE_DMD_ROWS_ON()                  { PORTB |= PIN_DMD_nOE; TCCR1A |= _BV(COM1A1); }
+#else
+	#define OE_DMD_ROWS_OFF()                 { PORTB &= ~PIN_DMD_nOE; }
+	#define OE_DMD_ROWS_ON()                  { PORTB |=  PIN_DMD_nOE; }
+#endif
 
 //Pixel/graphics writing modes (bGraphicsMode)
 #define GRAPHICS_NORMAL    0
