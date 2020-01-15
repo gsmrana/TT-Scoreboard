@@ -6,16 +6,21 @@ Digital Scoreboard for Table Tennis aka Ping Pong game with RF Controller
 
 # RF Remote user manual
 
-### Short Press 
+### Short Press:
 - A --> Increment score of left team
 - B --> Increment score of right team
 - C --> Clear current set score to start new set
 - D --> Toggle display mode: Tittle/Score/Timer
-### Long Press 
+### Long Press:
 - A --> Decrement score of left team
 - B --> Decrement score of right team
 - C --> Clear all score from display to start new match
 - D --> Toggle service side: Left/Right
+### Hold Down While Startup: (default brightness 80%)
+- A --> Set display brightness to 10%, Auto team swap disable
+- B --> Set display brightness to 20% 
+- C --> Set display brightness to 50% 
+- D --> Set display brightness to 100% 
 
 ![rf_remote](https://github.com/gsmrana/TT-Scoreboard/blob/master/Documents/rf_remote.jpg)
 
