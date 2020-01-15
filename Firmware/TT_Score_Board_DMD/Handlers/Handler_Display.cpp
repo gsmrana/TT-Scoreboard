@@ -34,6 +34,7 @@ void handler_display_init()
 	ttgame.right_team = &team_b;
 	dmd.clearScreen(false);
 	DMD_SCAN_ISR__Init();
+	handler_display_set_brightness(80);
 	_delay_ms(1000);
 }
 
@@ -44,8 +45,7 @@ void handler_display_clear()
 
 void handler_display_set_brightness(uint8_t percent)
 {
-	DMD_BRIGHTNESS_PWM__Init();
-	DMD_OE_PWM_SET_DUTYCYCLE(percent);
+	DMD_BRIGHTNESS_PWM__Init(percent);
 }
 
 static void handler_display_scan_isr()
@@ -105,51 +105,51 @@ void handler_display_test_numbers()
 
 void handler_display_update_match_state()
 {
-	if (ttgame.left_team->match_score >= MATCH_DEUCE_MIN_SCORE &&
-		ttgame.right_team->match_score >= MATCH_DEUCE_MIN_SCORE)
+	if (ttgame.left_team->current_set_score >= TT_SET_DEUCE_MIN_SCORE &&
+		ttgame.right_team->current_set_score >= TT_SET_DEUCE_MIN_SCORE)
 	{
-		ttgame.match_state = MATCH_DEUCE;
+		ttgame.tt_set_state = TT_SET_DEUCE;
 	}
 	else
 	{
-		ttgame.match_state = MATCH_RUNNING;
+		ttgame.tt_set_state = TT_SET_RUNNING;
 	}
 	
-	if (ttgame.match_state == MATCH_DEUCE)
+	if (ttgame.tt_set_state == TT_SET_DEUCE)
 	{
-		if (ttgame.left_team->match_score >= (ttgame.right_team->match_score + MATCH_WIN_DEUCE_SCORE))
+		if (ttgame.left_team->current_set_score >= (ttgame.right_team->current_set_score + TT_SET_WIN_DEUCE_SCORE))
 		{
 			ttgame.left_team->series_score++;
-			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
-			ttgame.match_state = MATCH_FINISHED;
+			ttgame.tt_set_winner_side = PLAYER_SIDE_LEFT;
+			ttgame.tt_set_state = TT_SET_FINISHED;
 		}		
-		else if (ttgame.right_team->match_score >= (ttgame.left_team->match_score + MATCH_WIN_DEUCE_SCORE))
+		else if (ttgame.right_team->current_set_score >= (ttgame.left_team->current_set_score + TT_SET_WIN_DEUCE_SCORE))
 		{
 			ttgame.right_team->series_score++;
-			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
-			ttgame.match_state = MATCH_FINISHED;
+			ttgame.tt_set_winner_side = PLAYER_SIDE_RIGHT;
+			ttgame.tt_set_state = TT_SET_FINISHED;
 		}
 		
 		// toggle service side on each score change
-		ttgame.current_service_side = (ttgame.initial_service_side + ttgame.left_team->match_score + ttgame.right_team->match_score) % PLAYER_SIDE_COUNT;
+		ttgame.current_service_side = (ttgame.initial_service_side + ttgame.left_team->current_set_score + ttgame.right_team->current_set_score) % PLAYER_SIDE_COUNT;
 	}
 	else // before DEUCE
 	{
-		if (ttgame.left_team->match_score >= MATCH_WIN_MIN_SCORE)
+		if (ttgame.left_team->current_set_score >= TT_SET_WIN_MIN_SCORE)
 		{
 			ttgame.left_team->series_score++;
-			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
-			ttgame.match_state = MATCH_FINISHED;
+			ttgame.tt_set_winner_side = PLAYER_SIDE_LEFT;
+			ttgame.tt_set_state = TT_SET_FINISHED;
 		}		
-		else if (ttgame.right_team->match_score >= MATCH_WIN_MIN_SCORE)
+		else if (ttgame.right_team->current_set_score >= TT_SET_WIN_MIN_SCORE)
 		{
 			ttgame.right_team->series_score++;
-			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
-			ttgame.match_state = MATCH_FINISHED;
+			ttgame.tt_set_winner_side = PLAYER_SIDE_RIGHT;
+			ttgame.tt_set_state = TT_SET_FINISHED;
 		}
 		
 		// toggle service side on every two score
-		ttgame.current_service_side = (ttgame.initial_service_side + ((ttgame.left_team->match_score + ttgame.right_team->match_score) / 2)) % PLAYER_SIDE_COUNT;
+		ttgame.current_service_side = (ttgame.initial_service_side + ((ttgame.left_team->current_set_score + ttgame.right_team->current_set_score) / 2)) % PLAYER_SIDE_COUNT;
 	}
 }
 
@@ -195,16 +195,16 @@ void handler_display_manager()
 					bool need_to_update_score = true;
 					
 					//flash the winner score
-					if (ttgame.match_state == MATCH_FINISHED)
+					if (ttgame.tt_set_state == TT_SET_FINISHED)
 					{
 						ttgame.flash_winner_state = !ttgame.flash_winner_state;
-						if (ttgame.flash_winner_state && ttgame.match_winner_side == PLAYER_SIDE_LEFT)
+						if (ttgame.flash_winner_state && ttgame.tt_set_winner_side == PLAYER_SIDE_LEFT)
 						{
 							dmd.drawChar(1, 9, ' ', GRAPHICS_NORMAL);
 							dmd.drawChar(7, 9, ' ', GRAPHICS_NORMAL);
 							need_to_update_score = false;
 						}
-						else if (ttgame.flash_winner_state && ttgame.match_winner_side == PLAYER_SIDE_RIGHT)
+						else if (ttgame.flash_winner_state && ttgame.tt_set_winner_side == PLAYER_SIDE_RIGHT)
 						{
 							dmd.drawChar(19, 9, ' ', GRAPHICS_NORMAL);
 							dmd.drawChar(25, 9, ' ', GRAPHICS_NORMAL);
@@ -218,8 +218,8 @@ void handler_display_manager()
 						sprintf(digit_buffer, "%02u|%02u,%02u|%02u",
 							ttgame.left_team->series_score,
 							ttgame.right_team->series_score,
-							ttgame.left_team->match_score,
-							ttgame.right_team->match_score
+							ttgame.left_team->current_set_score,
+							ttgame.right_team->current_set_score
 						);
 						dmd.drawChar(4, 0, digit_buffer[1], GRAPHICS_NORMAL);
 						dmd.drawChar(22, 0, digit_buffer[4], GRAPHICS_NORMAL);

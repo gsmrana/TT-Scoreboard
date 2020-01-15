@@ -24,6 +24,7 @@ static void handler_button_long_press();
 
 void handler_button_init()
 {
+	ttgame.auto_side_swap = true;
 	Button_GPIO_ISR__Init();	
 }
 
@@ -33,13 +34,22 @@ void handler_button_check_on_startup()
 		return;
 	
 	// set the display brightness based on button press
-	if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_C)
+	if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_A)
 	{
-		handler_display_set_brightness(30);		
+		ttgame.auto_side_swap = false;
+		handler_display_set_brightness(10);
+	}
+	else if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_B)
+	{
+		handler_display_set_brightness(20);
+	}
+	else if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_C)
+	{
+		handler_display_set_brightness(50);		
 	}
 	else if(REMOTE_BUTTON_IO_PINS & REMOTE_BUTTON_D)
 	{
-		handler_display_set_brightness(50);
+		handler_display_set_brightness(100);
 	}
 	
 	_delay_ms(1000);
@@ -50,7 +60,7 @@ void handler_button_check_on_startup()
 
 static void handler_softrtc_update_isr()
 {
-	if(ttgame.match_state == MATCH_FINISHED)
+	if(ttgame.tt_set_state == TT_SET_FINISHED)
 	{
 		softrtc.colon_on = true;
 		return;
@@ -111,10 +121,10 @@ static void handler_button_short_press()
 	{
 		remote.button_short_press &= ~REMOTE_BUTTON_A;
 		DebugLog("Short Press: A");
-		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED)
+		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.tt_set_state < TT_SET_FINISHED)
 		{
 			// left team score increment
-			ttgame.left_team->match_score++;			
+			ttgame.left_team->current_set_score++;			
 			handler_display_update_match_state();
 		}
 	}
@@ -122,10 +132,10 @@ static void handler_button_short_press()
 	{
 		remote.button_short_press &= ~REMOTE_BUTTON_B;	
 		DebugLog("Short Press: B");
-		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED)
+		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.tt_set_state < TT_SET_FINISHED)
 		{
 			// right team score increment
-			ttgame.right_team->match_score++;
+			ttgame.right_team->current_set_score++;
 			handler_display_update_match_state();
 		}
 	}
@@ -135,12 +145,23 @@ static void handler_button_short_press()
 		DebugLog("Short Press: C");
 		
 		// start new match
-		ttgame.left_team->match_score = 0;
-		ttgame.right_team->match_score = 0;
-		ttgame.initial_service_side = !ttgame.initial_service_side;
-		ttgame.current_service_side = ttgame.initial_service_side;
-		ttgame.match_winner_side = PLAYER_SIDE_NONE;
-		ttgame.match_state = MATCH_RUNNING;
+		ttgame.left_team->current_set_score = 0;
+		ttgame.right_team->current_set_score = 0;
+		ttgame.tt_set_winner_side = PLAYER_SIDE_NONE;
+		
+		if(ttgame.auto_side_swap)
+		{
+			tt_team_t *tt_team_ptr = ttgame.left_team;
+			ttgame.left_team = ttgame.right_team;
+			ttgame.right_team = tt_team_ptr;
+		}
+		else
+		{
+			ttgame.initial_service_side = !ttgame.initial_service_side;
+		}
+
+		ttgame.current_service_side = ttgame.initial_service_side;	
+		ttgame.tt_set_state = TT_SET_RUNNING;
 		softrtc.minute = 0;
 		softrtc.second = 0;
 	}
@@ -153,7 +174,7 @@ static void handler_button_short_press()
 		ttgame.app_mode++;
 		if (ttgame.app_mode >= MAX_APP_MODE)
 		{
-			if(ttgame.left_team->match_score > 0 || ttgame.right_team->match_score > 0 ||
+			if(ttgame.left_team->current_set_score > 0 || ttgame.right_team->current_set_score > 0 ||
 				ttgame.left_team->series_score > 0 || ttgame.right_team->series_score > 0)
 				ttgame.app_mode = APP_MODE_MATCH;
 			else ttgame.app_mode = APP_MODE_TITTLE;
@@ -168,11 +189,11 @@ static void handler_button_long_press()
 	{
 		remote.button_long_press &= ~REMOTE_BUTTON_A;
 		DebugLog("Long Press: A");
-		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED && 
-			ttgame.left_team->match_score > 0)
+		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.tt_set_state < TT_SET_FINISHED && 
+			ttgame.left_team->current_set_score > 0)
 		{
 			// left team score decrement
-			ttgame.left_team->match_score--;
+			ttgame.left_team->current_set_score--;
 			handler_display_update_match_state();
 		}
 	}
@@ -180,11 +201,11 @@ static void handler_button_long_press()
 	{
 		remote.button_long_press &= ~REMOTE_BUTTON_B;
 		DebugLog("Long Press: B");
-		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.match_state < MATCH_FINISHED && 
-			ttgame.right_team->match_score > 0)
+		if (ttgame.app_mode == APP_MODE_MATCH && ttgame.tt_set_state < TT_SET_FINISHED && 
+			ttgame.right_team->current_set_score > 0)
 		{
 			// right team score decrement
-			ttgame.right_team->match_score--;
+			ttgame.right_team->current_set_score--;
 			handler_display_update_match_state();
 		}		
 	}
@@ -194,14 +215,14 @@ static void handler_button_long_press()
 		DebugLog("Long Press: C");
 		
 		// clear series score
-		ttgame.left_team->match_score = 0;
-		ttgame.right_team->match_score = 0;
+		ttgame.left_team->current_set_score = 0;
+		ttgame.right_team->current_set_score = 0;
 		ttgame.left_team->series_score = 0;
 		ttgame.right_team->series_score = 0;
 		ttgame.initial_service_side = PLAYER_SIDE_LEFT;
 		ttgame.current_service_side = ttgame.initial_service_side;
-		ttgame.match_winner_side = PLAYER_SIDE_NONE;
-		ttgame.match_state = MATCH_RUNNING;
+		ttgame.tt_set_winner_side = PLAYER_SIDE_NONE;
+		ttgame.tt_set_state = TT_SET_RUNNING;
 		softrtc.minute = 0;
 		softrtc.second = 0;
 	}	
@@ -218,10 +239,10 @@ static void handler_button_long_press()
 		ttgame.left_team = ttgame.right_team;
 		ttgame.right_team = tt_team_ptr;
 		
-		if(ttgame.match_winner_side == PLAYER_SIDE_LEFT)
-			ttgame.match_winner_side = PLAYER_SIDE_RIGHT;
-		else if(ttgame.match_winner_side == PLAYER_SIDE_RIGHT)
-			ttgame.match_winner_side = PLAYER_SIDE_LEFT;
+		if(ttgame.tt_set_winner_side == PLAYER_SIDE_LEFT)
+			ttgame.tt_set_winner_side = PLAYER_SIDE_RIGHT;
+		else if(ttgame.tt_set_winner_side == PLAYER_SIDE_RIGHT)
+			ttgame.tt_set_winner_side = PLAYER_SIDE_LEFT;
 	}
 }
 
